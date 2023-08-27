@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CommunityHubbDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Community">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="isPrivate" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunityUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommunityId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CommunityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="AutorId" Type="int" Nullable="false" />
+          <Property Name="CommunityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="About" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="UniqueCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isValidated" Type="bit" Nullable="false" />
+          <Property Name="Dob" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Community__Commu__778AC167">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__UserI__797309D9">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__AutorId__7A672E12">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="AutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__CommunityI__787EE5A0">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommunityHubbDBModelStoreContainer">
+          <EntitySet Name="Community" EntityType="Self.Community" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityUser" EntityType="Self.CommunityUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Community__Commu__778AC167" Association="Self.FK__Community__Commu__778AC167">
+            <End Role="Community" EntitySet="Community" />
+            <End Role="CommunityUser" EntitySet="CommunityUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__UserI__797309D9" Association="Self.FK__Community__UserI__797309D9">
+            <End Role="User" EntitySet="User" />
+            <End Role="CommunityUser" EntitySet="CommunityUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__AutorId__7A672E12" Association="Self.FK__Post__AutorId__7A672E12">
+            <End Role="User" EntitySet="User" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__CommunityI__787EE5A0" Association="Self.FK__Post__CommunityI__787EE5A0">
+            <End Role="Community" EntitySet="Community" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommunityHubbDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Community">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isPrivate" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CommunityUsers" Relationship="Self.FK__Community__Commu__3D5E1FD2" FromRole="Community" ToRole="CommunityUser" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__CommunityI__4316F928" FromRole="Community" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="CommunityUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CommunityId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK__Community__Commu__3D5E1FD2" FromRole="CommunityUser" ToRole="Community" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Community__UserI__3E52440B" FromRole="CommunityUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AutorId" Type="Int32" Nullable="false" />
+          <Property Name="CommunityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK__Post__CommunityI__4316F928" FromRole="Post" ToRole="Community" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Post__AutorId__4222D4EF" FromRole="Post" ToRole="User" />
+          <Property Name="CommunityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isValidated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CommunityUsers" Relationship="Self.FK__Community__UserI__3E52440B" FromRole="User" ToRole="CommunityUser" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__AutorId__4222D4EF" FromRole="User" ToRole="Post" />
+          <Property Name="Dob" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Community__Commu__3D5E1FD2">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__CommunityI__4316F928">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__UserI__3E52440B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__AutorId__4222D4EF">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="AutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommunityHubbDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Communities" EntityType="Self.Community" />
+          <EntitySet Name="CommunityUsers" EntityType="Self.CommunityUser" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Community__Commu__3D5E1FD2" Association="Self.FK__Community__Commu__3D5E1FD2">
+            <End Role="Community" EntitySet="Communities" />
+            <End Role="CommunityUser" EntitySet="CommunityUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__CommunityI__4316F928" Association="Self.FK__Post__CommunityI__4316F928">
+            <End Role="Community" EntitySet="Communities" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__UserI__3E52440B" Association="Self.FK__Community__UserI__3E52440B">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CommunityUser" EntitySet="CommunityUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__AutorId__4222D4EF" Association="Self.FK__Post__AutorId__4222D4EF">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CommunityHubbDBModelStoreContainer" CdmEntityContainer="CommunityHubbDBEntities">
+          <EntitySetMapping Name="Communities">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Community">
+              <MappingFragment StoreEntitySet="Community">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="isPrivate" ColumnName="isPrivate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityUsers">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.CommunityUser">
+              <MappingFragment StoreEntitySet="CommunityUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommunityId" ColumnName="CommunityId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="CommunityName" ColumnName="CommunityName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AutorId" ColumnName="AutorId" />
+                <ScalarProperty Name="CommunityId" ColumnName="CommunityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="isValidated" ColumnName="isValidated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
