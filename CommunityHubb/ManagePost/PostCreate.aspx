@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PostCreate.aspx.cs" Inherits="CommunityHubb.ManagePost.PostCreate" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PostCreate.aspx.cs" Inherits="CommunityHubb.ManagePost.PostCreate" validateRequest = false %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main>
@@ -11,10 +11,10 @@
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="titleinput" ErrorMessage=" (Title is required)" CssClass="text-danger" />
                         <asp:TextBox runat="server" id="titleinput" CssClass="form-control w-75 mb-2" Font-Size="X-Large" Font-Bold="true"/>
                         <label for="postcontent" class="form-label h4 fw-bold">Content</label>
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="postcontent" ErrorMessage=" (Content is required)" CssClass="text-danger" />
-                        <asp:TextBox TextMode="MultiLine"  runat="server" id="postcontent" CausesValidation="false"></asp:TextBox>
+                         <asp:TextBox TextMode="MultiLine"  runat="server" id="postcontent" CausesValidation="false"></asp:TextBox>
                     </div>
                 </div>
+                
                 <div class="row d-flex justify-content-end">
                     <div class=" col-4">
                         <label for="communityname" class="form-label h5 fw-bold">Community Name</label>
@@ -34,7 +34,6 @@
     <script>
         tinymce.init({
             selector: 'textarea',
-            encoding: 'xml'
         });
     </script>
 </asp:Content>

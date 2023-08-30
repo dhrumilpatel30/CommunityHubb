@@ -144,7 +144,10 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ManageCommunity\CommunityHome.aspx" />
+    <Content Include="ManageCommunity\CreateCommunity.aspx" />
     <Content Include="ManagePost\PostCreate.aspx" />
+    <Content Include="ManagePost\PostHome.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
     <Content Include="Private\AdminCommunity.aspx" />
     <Content Include="Private\UserCommunity.aspx" />
@@ -408,12 +411,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManageCommunity\CommunityHome.aspx.cs">
+      <DependentUpon>CommunityHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCommunity\CommunityHome.aspx.designer.cs">
+      <DependentUpon>CommunityHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCommunity\CreateCommunity.aspx.cs">
+      <DependentUpon>CreateCommunity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCommunity\CreateCommunity.aspx.designer.cs">
+      <DependentUpon>CreateCommunity.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManagePost\PostCreate.aspx.cs">
       <DependentUpon>PostCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ManagePost\PostCreate.aspx.designer.cs">
       <DependentUpon>PostCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePost\PostHome.aspx.cs">
+      <DependentUpon>PostHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagePost\PostHome.aspx.designer.cs">
+      <DependentUpon>PostHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagePost\SelectCommunity.aspx.cs">
       <DependentUpon>SelectCommunity.aspx</DependentUpon>
@@ -495,9 +519,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Community\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\tinymce\tinymce.d.ts" />
   </ItemGroup>
