@@ -149,6 +149,7 @@
     <Content Include="ManagePost\PostCreate.aspx" />
     <Content Include="ManagePost\PostHome.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
+    <Content Include="postlist.ascx" />
     <Content Include="Private\AdminCommunity.aspx" />
     <Content Include="Private\UserCommunity.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -448,6 +449,13 @@
     </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>CommunityHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postlist.ascx.cs">
+      <DependentUpon>postlist.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="postlist.ascx.designer.cs">
+      <DependentUpon>postlist.ascx</DependentUpon>
     </Compile>
     <Compile Include="Private\AdminCommunity.aspx.cs">
       <DependentUpon>AdminCommunity.aspx</DependentUpon>

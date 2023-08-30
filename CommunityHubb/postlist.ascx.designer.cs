@@ -11,25 +11,16 @@ namespace CommunityHubb
 {
 
 
-    public partial class _Default
+    public partial class postlist
     {
 
         /// <summary>
-        /// postslistrec control.
+        /// postlistinchild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource postslistrec;
-
-        /// <summary>
-        /// posts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CommunityHubb.postlist posts;
+        protected global::System.Web.UI.WebControls.Repeater postlistinchild;
     }
 }

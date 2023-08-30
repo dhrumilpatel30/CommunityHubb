@@ -17,7 +17,7 @@
                         <div class="col-8">
                             <div class="card m-2">
                                 <div class="card-body">
-                                    <div class="border-bottom">
+                                    <div class="border-bottom border-dark">
                                         <asp:Label class="fw-bolder fs-1 mb-2" runat="server" Text='<%#Eval("Title") %>' ID="titlebox"></asp:Label>
                                     </div>
                                     <div class="m-2 ms-3 fs-4">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="card m-3">
+                            <div class="card m-2">
                                 <div class="card-body">
                                     <div class="fw-bold fs-4 ms-2 mt-2">Community</div>
                                     <a href="/Community/CommunityHome.aspx?id=<%# Eval("CommunityId") %>" class="text-decoration-none">

@@ -33,12 +33,21 @@ namespace CommunityHubb.Private
         protected global::System.Web.UI.WebControls.Label FailLabel;
 
         /// <summary>
-        /// publicPosts control.
+        /// postslistcomm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource publicPosts;
+        protected global::System.Web.UI.WebControls.SqlDataSource postslistcomm;
+
+        /// <summary>
+        /// posts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CommunityHubb.postlist posts;
     }
 }
