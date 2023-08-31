@@ -29,5 +29,6 @@ namespace CommunityHubb
         public virtual DbSet<CommunityUser> CommunityUsers { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Reply> Replies { get; set; }
     }
 }

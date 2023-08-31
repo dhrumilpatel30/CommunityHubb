@@ -14,6 +14,12 @@ namespace CommunityHubb
     
     public partial class Post
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Post()
+        {
+            this.Replies = new HashSet<Reply>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -22,8 +28,12 @@ namespace CommunityHubb
         public int AutorId { get; set; }
         public int CommunityId { get; set; }
         public string CommunityName { get; set; }
+        public Nullable<int> Likes { get; set; }
+        public Nullable<int> Dislikes { get; set; }
     
         public virtual Community Community { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

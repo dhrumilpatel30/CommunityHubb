@@ -13,6 +13,9 @@
         <AssociationConnector Association="CommunityHubbDBModel.FK__Post__CommunityI__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="CommunityHubbDBModel.FK__Community__UserI__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="CommunityHubbDBModel.FK__Post__AutorId__4222D4EF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.Reply" Width="1.5" PointX="8.25" PointY="3" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__PostId__02FC7413" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__UserId__03F0984C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

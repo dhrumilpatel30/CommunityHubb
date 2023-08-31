@@ -373,6 +373,9 @@
     <Content Include="Site.Master" />
     <Content Include="UserAccount\Login.aspx" />
     <Content Include="UserAccount\Signup.aspx" />
+    <Content Include="UserAccount\UserHome.aspx" />
+    <Content Include="UserAccount\UserUpdate.aspx" />
+    <Content Include="userslist.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -472,6 +475,9 @@
       <DependentUpon>UserCommunity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reply.cs">
+      <DependentUpon>CommunityHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -502,6 +508,27 @@
     </Compile>
     <Compile Include="UserAccount\Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount\UserHome.aspx.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount\UserHome.aspx.designer.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount\UserUpdate.aspx.cs">
+      <DependentUpon>UserUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount\UserUpdate.aspx.designer.cs">
+      <DependentUpon>UserUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userslist.ascx.cs">
+      <DependentUpon>userslist.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userslist.ascx.designer.cs">
+      <DependentUpon>userslist.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -7,12 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommunityHubb.ManageCommunity
+namespace CommunityHubb.UserAccount
 {
 
 
-    public partial class CommunityHome
+    public partial class UserHome
     {
+
+        /// <summary>
+        /// postslistuser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource postslistuser;
+
+        /// <summary>
+        /// commlistforuser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource commlistforuser;
 
         /// <summary>
         /// titlebox control.
@@ -22,33 +40,6 @@ namespace CommunityHubb.ManageCommunity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label titlebox;
-
-        /// <summary>
-        /// followbtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button followbtn;
-
-        /// <summary>
-        /// postslistcomm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource postslistcomm;
-
-        /// <summary>
-        /// memist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource memist;
 
         /// <summary>
         /// commdesc control.
@@ -85,14 +76,5 @@ namespace CommunityHubb.ManageCommunity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// userslist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CommunityHubb.userslist userslist;
     }
 }
