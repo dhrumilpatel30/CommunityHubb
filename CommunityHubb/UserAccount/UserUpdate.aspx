@@ -5,7 +5,7 @@
         <div class="container-fluid p-3">
             <div class="fw-bolder display-6 mb-3">Update your info</div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="fw-bolder fs-3 mB-1">Details</div>
@@ -25,6 +25,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-around">
+
+                    <asp:Button runat="server" CssClass="btn btn-dark fs-4 w-25 fw-bold" Text="Update Details" OnClick="UpdateDetails" />
+                    <button class="btn btn-outline-dark fw-semibold fs-5 w-25" type="button" onclick="location.href='../Default.aspx'">Cancel Update</button>
                 </div>
             </div>
         </div>
