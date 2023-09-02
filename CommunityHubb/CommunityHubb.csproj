@@ -145,9 +145,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ManageCommunity\CommunityHome.aspx" />
+    <Content Include="ManageCommunity\CommunityHomeView.aspx" />
     <Content Include="ManageCommunity\CreateCommunity.aspx" />
     <Content Include="ManagePost\PostCreate.aspx" />
     <Content Include="ManagePost\PostHome.aspx" />
+    <Content Include="ManagePost\PostHomeView.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
     <Content Include="postlist.ascx" />
     <Content Include="Private\AdminCommunity.aspx" />
@@ -371,6 +373,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserAccount\Home.aspx" />
     <Content Include="UserAccount\Login.aspx" />
     <Content Include="UserAccount\Signup.aspx" />
     <Content Include="UserAccount\UserHome.aspx" />
@@ -422,6 +425,13 @@
     <Compile Include="ManageCommunity\CommunityHome.aspx.designer.cs">
       <DependentUpon>CommunityHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManageCommunity\CommunityHomeView.aspx.cs">
+      <DependentUpon>CommunityHomeView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCommunity\CommunityHomeView.aspx.designer.cs">
+      <DependentUpon>CommunityHomeView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManageCommunity\CreateCommunity.aspx.cs">
       <DependentUpon>CreateCommunity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -442,6 +452,13 @@
     </Compile>
     <Compile Include="ManagePost\PostHome.aspx.designer.cs">
       <DependentUpon>PostHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePost\PostHomeView.aspx.cs">
+      <DependentUpon>PostHomeView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagePost\PostHomeView.aspx.designer.cs">
+      <DependentUpon>PostHomeView.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagePost\SelectCommunity.aspx.cs">
       <DependentUpon>SelectCommunity.aspx</DependentUpon>
@@ -494,6 +511,13 @@
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>CommunityHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserAccount\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

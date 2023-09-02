@@ -11,12 +11,23 @@ namespace CommunityHubb.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int userId = 0;
             if (null == Request.QueryString["id"])
             {
-                Session["fmsg"] = "Invalid User Id";
-                Response.Redirect("~/Default");
+                if(null != Session["UserId"])
+                {
+                    userId = Convert.ToInt32(Session["UserId"]);
+                }
+                else
+                {
+                    Session["fmsg"] = "Invalid User Id";
+                    Response.Redirect("~/Default");
+                }
             }
-            int userId = Convert.ToInt32(Request.QueryString["id"]);
+            else
+            {
+                userId = Convert.ToInt32(Request.QueryString["id"]);
+            }
             CommunityHubbDBEntities communityHubbDBEntities = new CommunityHubb.CommunityHubbDBEntities();
             User user = communityHubbDBEntities.Users.Where(u => u.Id == userId).FirstOrDefault();
             if (user == null)

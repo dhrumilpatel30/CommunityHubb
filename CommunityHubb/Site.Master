@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>CommunityHubb</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -19,7 +19,6 @@
         .full {
             display: block;
         }
-
     </style>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +29,6 @@
     <form runat="server" id="mainform">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -43,7 +40,6 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
@@ -56,24 +52,27 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Private/UserCommunity">Followed Communities</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Private/AdminCommunity.aspx">Your Communities</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Default">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/PostHomeView.aspx">Posts</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/CommunityHomeView.aspx">Communities</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/SelectCommunity">Post Something</a></li>
-                    </ul><ul class="navbar-nav navbar-right">
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
                         <%if (Session["UserId"] == null)
                             {
-%>
+                        %>
                         <li><a runat="server" class="nav-link" href="~/UserAccount/Signup">Register</a></li>
-                                <li><a runat="server" class="nav-link" href="~/UserAccount/Login">Log in</a></li>
-                            </ul>
-                    <% } else {  %>
-                            <ul class="navbar-nav navbar-right">
-                                <li><asp:Button runat="server" CssClass="btn btn-dark" OnClick="logout" Text="Logout" /></li>
-                                <li><a runat="server" class="nav-link" href="#"><%# Session["UserName"] %></a></li>
-                            </ul>
+                        <li><a runat="server" class="nav-link" href="~/UserAccount/Login">Log in</a></li>
+                    </ul>
+                    <% }
+                        else
+                        {  %>
+                    <ul class="navbar-nav navbar-right">
+                        <li>
+                            <asp:Button runat="server" CssClass="btn btn-dark" OnClick="logout" Text="Logout" /></li>
+                        <li><a runat="server" class="nav-link" href="~/UserAccount/Login">Your Account</a></li>
+                    </ul>
                     <%} %>
-                        
                 </div>
             </div>
         </nav>
