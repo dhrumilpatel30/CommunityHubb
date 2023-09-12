@@ -16,8 +16,8 @@ namespace CommunityHubb
             SqlDataSource sqlDataSource = this.Parent.FindControl(DataSourceID) as SqlDataSource;
             if (sqlDataSource != null)
             {
-                postlistinchild.DataSource = sqlDataSource;
-                postlistinchild.DataBind();
+                postlistinchildlist.DataSource = sqlDataSource;
+                postlistinchildlist.DataBind();
             }
         }
     }

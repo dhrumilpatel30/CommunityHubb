@@ -14,7 +14,7 @@ namespace CommunityHubb.ManageCommunity
             if (Request.QueryString["id"] == null)
             {
                 Session["fmsg"] = "Invalid Community Id";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             int communityId = Convert.ToInt32(Request.QueryString["id"]);
             CommunityHubbDBEntities communityHubbDBEntities = new CommunityHubb.CommunityHubbDBEntities();
@@ -22,16 +22,16 @@ namespace CommunityHubb.ManageCommunity
             if (community == null)
             {
                 Session["fmsg"] = "Community not found";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             if (community.isPrivate)
             {
-                List<User> users = new List<User>();
-                users = community.CommunityUsers.Select(cu => cu.User).ToList();
-                if (!users.Contains((User)Session["UserId"]))
-                {
+                List<User> users = community.CommunityUsers.Select(cu => cu.User).ToList();
+                int userId = Convert.ToInt32(Session["UserId"]);
+                if (!users.Any(u => u.Id == userId))
+                { 
                     Session["fmsg"] = "You are not a member of this private community";
-                    Response.Redirect("~/Default");
+                    Response.Redirect("/");
                 }
             }
             titlebox.Text = community.Name;
@@ -53,6 +53,50 @@ namespace CommunityHubb.ManageCommunity
                     followbtn.Text = "Follow Community";
                 }
             }
+        }
+
+        protected void ToggleFollow(object sender, EventArgs e)
+        {
+            if (null == Session["UserId"])
+            {
+                Response.Redirect("~/UserAccount/Login.aspx");
+            }
+            else
+            {
+                int comId = Convert.ToInt32(Request.QueryString["id"]);
+                Community community = new CommunityHubb.CommunityHubbDBEntities().Communities.Where(c => c.Id == comId).FirstOrDefault();
+                CommunityHubb.CommunityHubbDBEntities communityHubbDB = new CommunityHubb.CommunityHubbDBEntities();
+
+                int userId = Convert.ToInt32(Session["UserId"]);
+                CommunityUser communityUser = community.CommunityUsers.Where(cu => cu.UserId == userId).FirstOrDefault();
+                if (communityUser != null)
+                {
+                    community.CommunityUsers.Remove(communityUser);
+                    //communityHubbDB.Entry(community).State = System.Data.Entity.EntityState.Modified;
+                    CommunityUser communityUserInDB = communityHubbDB.CommunityUsers.Find(communityUser.Id);
+                    communityHubbDB.CommunityUsers.Remove(communityUserInDB);
+                    communityHubbDB.SaveChanges();
+
+                    followbtn.Text = "Follow Community";
+                }
+                else
+                {
+                    CommunityUser newCommunityUser = new CommunityUser
+                    {
+                        UserId = userId,
+                        CommunityId = community.Id,
+                        IsAdmin = false
+                    };
+                    
+                    communityHubbDB.CommunityUsers.Add(newCommunityUser);
+                    communityHubbDB.SaveChanges();
+                    //communityHubbDB.CommunityUsers.Add(newCommunityUser);
+                    followbtn.Text = "Unfollow Community";
+                }
+
+
+            }
+
         }
     }
 }

@@ -141,7 +141,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ManageCommunity\CommunityHome.aspx" />
@@ -152,7 +151,6 @@
     <Content Include="ManagePost\PostHomeView.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
     <Content Include="postlist.ascx" />
-    <Content Include="Private\AdminCommunity.aspx" />
     <Content Include="Private\UserCommunity.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -408,13 +406,6 @@
     <Compile Include="CommunityUser.cs">
       <DependentUpon>CommunityHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -476,13 +467,6 @@
     </Compile>
     <Compile Include="postlist.ascx.designer.cs">
       <DependentUpon>postlist.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Private\AdminCommunity.aspx.cs">
-      <DependentUpon>AdminCommunity.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\AdminCommunity.aspx.designer.cs">
-      <DependentUpon>AdminCommunity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\UserCommunity.aspx.cs">
       <DependentUpon>UserCommunity.aspx</DependentUpon>

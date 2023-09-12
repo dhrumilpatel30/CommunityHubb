@@ -40,7 +40,7 @@ namespace CommunityHubb.UserAccount
             communityHubbDBEntities.Users.Add(user);
             communityHubbDBEntities.SaveChanges();
             Session["smsg"] = "User Created Successfully";
-            Response.Redirect("~/Default");
+            Response.Redirect("/");
         }
     }
 }

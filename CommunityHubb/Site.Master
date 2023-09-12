@@ -52,10 +52,11 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Default">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/PostHomeView.aspx">Home</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/PostHomeView.aspx">Posts</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/CommunityHomeView.aspx">Communities</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/SelectCommunity">Post Something</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/CreateCommunity.aspx">Create Community</a></li>
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         <%if (Session["UserId"] == null)
@@ -70,7 +71,7 @@
                     <ul class="navbar-nav navbar-right">
                         <li>
                             <asp:Button runat="server" CssClass="btn btn-dark" OnClick="logout" Text="Logout" /></li>
-                        <li><a runat="server" class="nav-link" href="~/UserAccount/Login">Your Account</a></li>
+                        <li><a runat="server" class="nav-link" href="~/UserAccount/UserHome.aspx">Your Account</a></li>
                     </ul>
                     <%} %>
                 </div>

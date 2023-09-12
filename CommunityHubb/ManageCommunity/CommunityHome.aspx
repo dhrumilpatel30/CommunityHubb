@@ -14,7 +14,7 @@
                             <div class="border-bottom border-dark">
                                 <asp:Label class="fw-bolder fs-1 mb-2" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
                             <div class="m-4 ms-2">
-                                <asp:Button CssClass="btn btn-dark fs-5" runat="server" ID="followbtn"/>
+                                <asp:Button CssClass="btn btn-dark fs-5" runat="server" ID="followbtn" OnClick="ToggleFollow" />
                             </div>
                                 <asp:SqlDataSource runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post] WHERE ([CommunityId] = @CommunityId)" ID="postslistcomm">
                                     <SelectParameters>

@@ -14,7 +14,7 @@ namespace CommunityHubb.ManagePost
             if (Session["UserId"] == null)
             {
                 Session["fmsg"] = "You are Not Logged In";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
         }
 

@@ -14,13 +14,13 @@ namespace CommunityHubb.ManagePost
             if (Session["UserId"] == null)
             {
                 Session["fmsg"] = "You are Not Logged In";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             String communityId = Request.QueryString["id"];
             if(communityId == null)
             {
                 Session["fmsg"] = "Community Not Found";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             Session["CommunityId"] = communityId;
             CommunityHubbDBEntities communityHubbDB = new CommunityHubbDBEntities();
@@ -30,13 +30,13 @@ namespace CommunityHubb.ManagePost
             if (community == null)
             {
                 Session["fmsg"] = "Community Not Found";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             int count = communityHubbDB.CommunityUsers.Where(c => c.CommunityId == communityIdInt && c.UserId == userId).Count();
             if (count == 0)
             {
                 Session["fmsg"] = "You are Not a Member of this Community";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
 
             }
             communityname.Text = community.Name;
@@ -60,7 +60,8 @@ namespace CommunityHubb.ManagePost
             communityHubbDB.Posts.Add(post);
             communityHubbDB.SaveChanges();
             Session["smsg"] = "Post Created Successfully";
-            Response.Redirect("~/ManagePost/SelectCommunity");
+            
+            Response.Redirect("~/ManagePost/PostHome?id="+post.Id.ToString());
             
         }
     }

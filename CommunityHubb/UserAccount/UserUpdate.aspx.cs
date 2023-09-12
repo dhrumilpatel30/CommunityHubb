@@ -16,7 +16,7 @@ namespace CommunityHubb.UserAccount
             if (Session["UserId"] == null)
             {
                 Session["fmsg"] = "Please login to continue";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace CommunityHubb.UserAccount
             communityHubbDBEntities.SaveChanges();
 
             Session["smsg"] = "Details updated successfully";
-            Response.Redirect("~/Default");
+            Response.Redirect("/");
         }
     }
 }

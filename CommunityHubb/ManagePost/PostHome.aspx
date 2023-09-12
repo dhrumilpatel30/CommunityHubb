@@ -34,7 +34,7 @@
                             <div class="card m-2">
                                 <div class="card-body">
                                     <div class="fw-bold fs-4 ms-2 mt-2">Community</div>
-                                    <a href="/Community/CommunityHome.aspx?id=<%# Eval("CommunityId") %>" class="text-decoration-none">
+                                    <a href="/ManageCommunity/CommunityHome.aspx?id=<%# Eval("CommunityId") %>" class="text-decoration-none">
                                         <asp:Label runat="server" ID="communityname" Text='<%#Eval("CommunityName")%>' CssClass="fw-bolder fs-4 ms-3"></asp:Label>
                                     </a>
                                     <div class="fw-bold fs-4 ms-2 mt-2">Author</div>

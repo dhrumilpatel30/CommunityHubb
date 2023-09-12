@@ -32,6 +32,7 @@ namespace CommunityHubb.ManageCommunity
             CommunityHubbDBEntities communityHubbDBEntities = new CommunityHubbDBEntities();
             communityHubbDBEntities.Communities.Add(community);
             communityHubbDBEntities.SaveChanges();
+
             CommunityUser communityUser = new CommunityUser();
             communityUser.CommunityId = community.Id;
             communityUser.UserId = Convert.ToInt32(Session["UserId"]);
@@ -39,6 +40,7 @@ namespace CommunityHubb.ManageCommunity
             communityHubbDBEntities.CommunityUsers.Add(communityUser);
             communityHubbDBEntities.SaveChanges();
 
+            Response.Redirect("~/ManageCommunity/CommunityHome.aspx?id=" + community.Id);
         }
     }
 }

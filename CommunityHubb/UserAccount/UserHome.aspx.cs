@@ -21,7 +21,7 @@ namespace CommunityHubb.UserAccount
                 else
                 {
                     Session["fmsg"] = "Invalid User Id";
-                    Response.Redirect("~/Default");
+                    Response.Redirect("/");
                 }
             }
             else
@@ -33,7 +33,7 @@ namespace CommunityHubb.UserAccount
             if (user == null)
             {
                 Session["fmsg"] = "User not found";
-                Response.Redirect("~/Default");
+                Response.Redirect("/");
             }
             titlebox.Text = user.Name;
             commdesc.Text = user.About;
