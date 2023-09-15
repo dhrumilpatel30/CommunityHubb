@@ -16,6 +16,10 @@
         <EntityTypeShape EntityType="CommunityHubbDBModel.Reply" Width="1.5" PointX="8.25" PointY="3" />
         <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__PostId__02FC7413" />
         <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__UserId__03F0984C" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.Reaction" Width="1.5" PointX="10.5" PointY="3" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reaction__postId__160F4887" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reaction__replyI__1CBC4616" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reaction__userId__17036CC0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

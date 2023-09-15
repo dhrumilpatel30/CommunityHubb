@@ -14,6 +14,12 @@ namespace CommunityHubb
     
     public partial class Reply
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reply()
+        {
+            this.Reactions = new HashSet<Reaction>();
+        }
+    
         public int Id { get; set; }
         public string Content { get; set; }
         public int PostId { get; set; }
@@ -21,8 +27,11 @@ namespace CommunityHubb
         public System.DateTime Created { get; set; }
         public Nullable<int> Likes { get; set; }
         public Nullable<int> Dislikes { get; set; }
+        public string author { get; set; }
     
         public virtual Post Post { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reaction> Reactions { get; set; }
     }
 }

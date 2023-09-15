@@ -151,7 +151,6 @@
     <Content Include="ManagePost\PostHomeView.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
     <Content Include="postlist.ascx" />
-    <Content Include="Private\UserCommunity.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -439,7 +438,6 @@
     </Compile>
     <Compile Include="ManagePost\PostHome.aspx.cs">
       <DependentUpon>PostHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ManagePost\PostHome.aspx.designer.cs">
       <DependentUpon>PostHome.aspx</DependentUpon>
@@ -468,14 +466,10 @@
     <Compile Include="postlist.ascx.designer.cs">
       <DependentUpon>postlist.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Private\UserCommunity.aspx.cs">
-      <DependentUpon>UserCommunity.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\UserCommunity.aspx.designer.cs">
-      <DependentUpon>UserCommunity.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reaction.cs">
+      <DependentUpon>CommunityHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reply.cs">
       <DependentUpon>CommunityHubModel.tt</DependentUpon>
     </Compile>

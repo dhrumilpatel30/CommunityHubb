@@ -60,6 +60,7 @@
                             <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
     Request.ApplicationPath.TrimEnd('/') + "/" %>ManageCommunity/CommunityHome.aspx?id=<%#Eval("Id") %>`' class="btn btn-light container rounded-4 m-2">
                                 <h4 class="fw-bold d-flex"><%# Eval("Name") %></h4>
+
                             </div>
                     </td>
                 </tr>

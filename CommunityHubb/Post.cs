@@ -18,6 +18,7 @@ namespace CommunityHubb
         public Post()
         {
             this.Replies = new HashSet<Reply>();
+            this.Reactions = new HashSet<Reaction>();
         }
     
         public int Id { get; set; }
@@ -35,5 +36,7 @@ namespace CommunityHubb
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reaction> Reactions { get; set; }
     }
 }

@@ -39,6 +39,17 @@
           <Property Name="Likes" Type="int" />
           <Property Name="Dislikes" Type="int" />
         </EntityType>
+        <EntityType Name="Reaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="isReply" Type="bit" Nullable="false" />
+          <Property Name="isLike" Type="bit" Nullable="false" />
+          <Property Name="replyId" Type="int" />
+        </EntityType>
         <EntityType Name="Reply">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,6 +59,7 @@
           <Property Name="PostId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="100" />
           <Property Name="Likes" Type="int" />
           <Property Name="Dislikes" Type="int" />
         </EntityType>
@@ -113,7 +125,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reply__PostId__02FC7413">
+        <Association Name="FK__Reaction__postId__29221CFB">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Reaction" Type="Self.Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reaction__replyI__2B0A656D">
+          <End Role="Reply" Type="Self.Reply" Multiplicity="0..1" />
+          <End Role="Reaction" Type="Self.Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="replyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reaction__userId__2A164134">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reaction" Type="Self.Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reply__PostId__1AD3FDA4">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
           <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reply__UserId__03F0984C">
+        <Association Name="FK__Reply__UserId__1BC821DD">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,6 +189,7 @@
           <EntitySet Name="Community" EntityType="Self.Community" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommunityUser" EntityType="Self.CommunityUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reaction" EntityType="Self.Reaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Community__Commu__778AC167" Association="Self.FK__Community__Commu__778AC167">
@@ -159,11 +208,23 @@
             <End Role="Community" EntitySet="Community" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reply__PostId__02FC7413" Association="Self.FK__Reply__PostId__02FC7413">
+          <AssociationSet Name="FK__Reaction__postId__29221CFB" Association="Self.FK__Reaction__postId__29221CFB">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Reaction" EntitySet="Reaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reaction__replyI__2B0A656D" Association="Self.FK__Reaction__replyI__2B0A656D">
+            <End Role="Reply" EntitySet="Reply" />
+            <End Role="Reaction" EntitySet="Reaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reaction__userId__2A164134" Association="Self.FK__Reaction__userId__2A164134">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reaction" EntitySet="Reaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reply__PostId__1AD3FDA4" Association="Self.FK__Reply__PostId__1AD3FDA4">
             <End Role="Post" EntitySet="Post" />
             <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reply__UserId__03F0984C" Association="Self.FK__Reply__UserId__03F0984C">
+          <AssociationSet Name="FK__Reply__UserId__1BC821DD" Association="Self.FK__Reply__UserId__1BC821DD">
             <End Role="User" EntitySet="User" />
             <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
@@ -212,6 +273,7 @@
           <Property Name="Likes" Type="Int32" />
           <Property Name="Dislikes" Type="Int32" />
           <NavigationProperty Name="Replies" Relationship="CommunityHubbDBModel.FK__Reply__PostId__02FC7413" FromRole="Post" ToRole="Reply" />
+          <NavigationProperty Name="Reactions" Relationship="CommunityHubbDBModel.FK__Reaction__postId__160F4887" FromRole="Post" ToRole="Reaction" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -229,6 +291,7 @@
           <NavigationProperty Name="Posts" Relationship="Self.FK__Post__AutorId__4222D4EF" FromRole="User" ToRole="Post" />
           <Property Name="Dob" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Replies" Relationship="CommunityHubbDBModel.FK__Reply__UserId__03F0984C" FromRole="User" ToRole="Reply" />
+          <NavigationProperty Name="Reactions" Relationship="CommunityHubbDBModel.FK__Reaction__userId__17036CC0" FromRole="User" ToRole="Reaction" />
         </EntityType>
         <Association Name="FK__Community__Commu__3D5E1FD2">
           <End Role="Community" Type="Self.Community" Multiplicity="1" />
@@ -308,6 +371,19 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
+          <EntitySet Name="Reactions" EntityType="CommunityHubbDBModel.Reaction" />
+          <AssociationSet Name="FK__Reaction__postId__160F4887" Association="CommunityHubbDBModel.FK__Reaction__postId__160F4887">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Reaction" EntitySet="Reactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reaction__replyI__1CBC4616" Association="CommunityHubbDBModel.FK__Reaction__replyI__1CBC4616">
+            <End Role="Reply" EntitySet="Replies" />
+            <End Role="Reaction" EntitySet="Reactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reaction__userId__17036CC0" Association="CommunityHubbDBModel.FK__Reaction__userId__17036CC0">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Reaction" EntitySet="Reactions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Reply">
           <Key>
@@ -322,6 +398,8 @@
           <Property Name="Dislikes" Type="Int32" />
           <NavigationProperty Name="Post" Relationship="CommunityHubbDBModel.FK__Reply__PostId__02FC7413" FromRole="Reply" ToRole="Post" />
           <NavigationProperty Name="User" Relationship="CommunityHubbDBModel.FK__Reply__UserId__03F0984C" FromRole="Reply" ToRole="User" />
+          <Property Name="author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reactions" Relationship="CommunityHubbDBModel.FK__Reaction__replyI__1CBC4616" FromRole="Reply" ToRole="Reaction" />
         </EntityType>
         <Association Name="FK__Reply__PostId__02FC7413">
           <End Type="CommunityHubbDBModel.Post" Role="Post" Multiplicity="1" />
@@ -344,6 +422,56 @@
             </Principal>
             <Dependent Role="Reply">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="postId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="isReply" Type="Boolean" Nullable="false" />
+          <Property Name="isLike" Type="Boolean" Nullable="false" />
+          <Property Name="replyId" Type="Int32" />
+          <NavigationProperty Name="Post" Relationship="CommunityHubbDBModel.FK__Reaction__postId__160F4887" FromRole="Reaction" ToRole="Post" />
+          <NavigationProperty Name="Reply" Relationship="CommunityHubbDBModel.FK__Reaction__replyI__1CBC4616" FromRole="Reaction" ToRole="Reply" />
+          <NavigationProperty Name="User" Relationship="CommunityHubbDBModel.FK__Reaction__userId__17036CC0" FromRole="Reaction" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Reaction__postId__160F4887">
+          <End Type="CommunityHubbDBModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="CommunityHubbDBModel.Reaction" Role="Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reaction__replyI__1CBC4616">
+          <End Type="CommunityHubbDBModel.Reply" Role="Reply" Multiplicity="0..1" />
+          <End Type="CommunityHubbDBModel.Reaction" Role="Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="replyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reaction__userId__17036CC0">
+          <End Type="CommunityHubbDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="CommunityHubbDBModel.Reaction" Role="Reaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reaction">
+              <PropertyRef Name="userId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -408,12 +536,25 @@
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="CommunityHubbDBModel.Reply">
               <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="Dislikes" ColumnName="Dislikes" />
                 <ScalarProperty Name="Likes" ColumnName="Likes" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="PostId" ColumnName="PostId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reactions">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Reaction">
+              <MappingFragment StoreEntitySet="Reaction">
+                <ScalarProperty Name="replyId" ColumnName="replyId" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="isReply" ColumnName="isReply" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
