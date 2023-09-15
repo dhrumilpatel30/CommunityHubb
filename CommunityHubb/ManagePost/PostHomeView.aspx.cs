@@ -30,6 +30,7 @@ namespace CommunityHubb.ManagePost
                     }
                 }
             }
+            posts = posts.OrderByDescending(p => p.Date).ToList();
             postlistview.DataSource = posts;
             postlistview.DataBind();
             Session["allPosts"] = posts;
@@ -43,7 +44,7 @@ namespace CommunityHubb.ManagePost
                 
                 privateRadio.Enabled = false;
                 unfollowedRadio.Enabled = false;
-                followedRadio.Enabled = false;
+                followedRadio.Enabled = false;  
                 publicRadio.Enabled = false;
                 privateRadio.CssClass = "text-black-50";
                 followedRadio.CssClass = "text-black-50";

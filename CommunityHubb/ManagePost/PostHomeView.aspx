@@ -28,13 +28,13 @@
                 <div class="form-group">
                     <label class="fs-5 fw-bold">Sorting Method:</label>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" />
+                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" Checked="True"  />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="popularRadio" runat="server" Text=" Popular" GroupName="sortingMethod" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod" Checked="True" />
+                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod"/>
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="alphabeticalRadio" runat="server" Text=" Alphabetical" GroupName="sortingMethod" />

@@ -50,6 +50,7 @@ namespace CommunityHubb.ManagePost
             generatePostData(postData);
             genreateReplyList(postData);
             generatePostLike(postData);
+            replyBox.Visible = false;
         }
         protected void generatePostData(Post postData)
         {
@@ -320,6 +321,43 @@ namespace CommunityHubb.ManagePost
             entities.SaveChanges();
             generatePostLike(postData);
 
+        }
+
+        protected void SaveReply_Click(object sender, EventArgs e)
+        {
+            if(null == Session["UserId"])
+            {
+                Session["fmsg"] = "Please login to reply to this post";
+                Response.Redirect("~/ManagePost/PostHome?id=" + Request.QueryString["id"]);
+            }
+            string replyDataValue = replyData.Text;
+            CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
+            int postId = Convert.ToInt32(Request.QueryString["id"]);
+            Post postData = entities.Posts.Where(x => x.Id == postId).FirstOrDefault();
+            Reply reply = new Reply
+            {
+                Content = replyDataValue,
+                PostId = postId,
+                UserId = Convert.ToInt32(Session["UserId"]),
+                Created = DateTime.Now,
+                Dislikes = 0,
+                Likes = 0,
+                author = postData.User.Name,
+            };
+            entities.Replies.Add(reply);
+            entities.SaveChanges();
+            Session["smsg"] = "Reply added successfully";
+            Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            replyBox.Visible = false;
+        }
+
+        protected void AddReplyBtn_Click(object sender, EventArgs e)
+        {
+            replyBox.Visible = !replyBox.Visible;
         }
     }
 }

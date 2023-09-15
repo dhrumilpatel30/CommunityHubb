@@ -123,6 +123,51 @@ namespace CommunityHubb.ManagePost
         protected global::System.Web.UI.WebControls.Label authorName;
 
         /// <summary>
+        /// AddReplyBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddReplyBtn;
+
+        /// <summary>
+        /// replyBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl replyBox;
+
+        /// <summary>
+        /// replyData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox replyData;
+
+        /// <summary>
+        /// SaveReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveReply;
+
+        /// <summary>
+        /// Cancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Cancel;
+
+        /// <summary>
         /// repliesListView control.
         /// </summary>
         /// <remarks>
