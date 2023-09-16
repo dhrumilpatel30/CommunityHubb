@@ -33,24 +33,6 @@ namespace CommunityHubb.ManageCommunity
         protected global::System.Web.UI.WebControls.Button followbtn;
 
         /// <summary>
-        /// postslistcomm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource postslistcomm;
-
-        /// <summary>
-        /// memist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource memist;
-
-        /// <summary>
         /// commdesc control.
         /// </summary>
         /// <remarks>
@@ -69,13 +51,13 @@ namespace CommunityHubb.ManageCommunity
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// posts control.
+        /// postlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CommunityHubb.postlist posts;
+        protected global::System.Web.UI.WebControls.Repeater postlist;
 
         /// <summary>
         /// Label1 control.
@@ -87,12 +69,12 @@ namespace CommunityHubb.ManageCommunity
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// userslist control.
+        /// userlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CommunityHubb.userslist userslist;
+        protected global::System.Web.UI.WebControls.Repeater userlist;
     }
 }

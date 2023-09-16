@@ -89,7 +89,7 @@ namespace CommunityHubb.ManagePost
             }
             else if (popularRadio.Checked)
             {
-                //filteredPosts = filteredPosts.OrderByDescending(p => p.Likes + p.Replies.Count).ToList();
+                filteredPosts = filteredPosts.OrderByDescending(p => p.Likes + p.Replies.Count).ToList();
             }
 
             postlistview.DataSource = filteredPosts;

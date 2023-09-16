@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommunityHome.aspx.cs" Inherits="CommunityHubb.ManageCommunity.CommunityHome" %>
-<%@ Register Src="~/postlist.ascx" TagName="posts" TagPrefix="uc" %>
-<%@ Register Src="~/userslist.ascx" TagName="users" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main>
@@ -9,27 +7,14 @@
 
             <div class="row">
                 <div class="col-8">
-                    <div class="card m-2" style="height:250px">
+                    <div class="card m-2" style="height: 200px">
                         <div class="card-body">
-                            <div class="border-bottom border-dark">
-                                <asp:Label class="fw-bolder fs-1 mb-2" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
-                            <div class="m-4 ms-2">
-                                <asp:Button CssClass="btn btn-dark fs-5" runat="server" ID="followbtn" OnClick="ToggleFollow" />
-                            </div>
-                                <asp:SqlDataSource runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post] WHERE ([CommunityId] = @CommunityId)" ID="postslistcomm">
-                                    <SelectParameters>
-                                        <asp:QueryStringParameter QueryStringField="id" Name="CommunityId" Type="Int32"></asp:QueryStringParameter>
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
-                                
-                            <asp:SqlDataSource runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Name, Id
-FROM [User] WHERE Id IN(
-                  SELECT UserID FROM CommunityUser WHERE CommunityId = @Id)"
-                                ID="memist">
-                                <SelectParameters>
-                                    <asp:QueryStringParameter QueryStringField="id" Name="Id"></asp:QueryStringParameter>
-                                </SelectParameters>
-                            </asp:SqlDataSource>
+                            <div class="border-bottom border-dark row m-1">
+                                <asp:Label class="fw-bolder fs-1 mb-2 col-9" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
+                                <div class="col-3">
+                                    <asp:Button CssClass="btn btn-dark d-block" runat="server" ID="followbtn" OnClick="ToggleFollow" />
+                                </div>
+
                             </div>
                             <div class="m-2 ms-3 fs-5">
                                 <div class="fw-bold">Description:</div>
@@ -42,8 +27,30 @@ FROM [User] WHERE Id IN(
                             <div class="border-bottom border-dark mb-2 ">
                                 <asp:Label class="fw-bolder fs-3" runat="server" Text="Posts" ID="Label2"></asp:Label>
                             </div>
-                            
-            <uc:posts runat="server" ID="posts" DataSourceID="postslistcomm" />
+
+                            <table class="table-borderless w-100">
+                                <asp:Repeater runat="server" ID="postlist">
+                                    <ItemTemplate>
+                                        <tbody class="table">
+                                            <tr>
+                                                <td>
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                                        class="btn btn-light border border-1 container p-3 rounded-4 m-1">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div style='font-weight: 600'>
+                                                                In:<a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"> <%# Eval("CommunityName") %></span> </a>, 
+                                                                By <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                            </div>
+                                                            <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
+                                                        </div>
+                                                        <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -53,8 +60,23 @@ FROM [User] WHERE Id IN(
                             <div class="border-bottom border-dark mt-3">
                                 <asp:Label class="fw-bolder fs-3 mb-3" runat="server" Text="Members" ID="Label1"></asp:Label>
                             </div>
-                            
-                            <uc:users runat="server" ID="userslist" DataSourceID="memist" /> 
+                            <table class="table-borderless w-100">
+                                <asp:Repeater runat="server" ID="userlist">
+                                    <ItemTemplate>
+                                        <tbody class="table">
+                                            <tr>
+                                                <td>
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
+    Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                                        class="btn btn-light container rounded-4 m-2">
+                                                        <h4 class="fw-bold d-flex"><%# Eval("Name") %></h4>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </table>
                         </div>
                     </div>
                 </div>

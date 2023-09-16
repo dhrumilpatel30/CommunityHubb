@@ -9,7 +9,7 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="fw-bolder fs-3 mB-1">Details</div>
-                            <div>Other things like Name, Email and password are not yet possible to update</div>
+                            <div>Other things like Name, Email and password are not possible to update. :(</div>
                             <div class="mt-2 mb-4">
 
                                 <label class="form-label fw-bold fs-6">About you</label>
@@ -29,7 +29,7 @@
                 <div class="d-flex justify-content-around">
 
                     <asp:Button runat="server" CssClass="btn btn-dark fs-4 w-25 fw-bold" Text="Update Details" OnClick="UpdateDetails" />
-                    <button class="btn btn-outline-dark fw-semibold fs-5 w-25" type="button" onclick="location.href='../Default.aspx'">Cancel Update</button>
+                    <a class="btn btn-outline-dark fw-semibold fs-5 w-25" type="button" href="/" >Cancel Update</a>
                 </div>
             </div>
         </div>

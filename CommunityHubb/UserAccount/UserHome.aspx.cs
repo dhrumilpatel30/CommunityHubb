@@ -11,6 +11,7 @@ namespace CommunityHubb.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            updatebox.Visible = false;
             int userId = 0;
             if (null == Request.QueryString["id"])
             {
@@ -35,9 +36,22 @@ namespace CommunityHubb.UserAccount
                 Session["fmsg"] = "User not found";
                 Response.Redirect("/");
             }
-            titlebox.Text = user.Name;
-            commdesc.Text = user.About;
-
+            if(null != Session["UserId"])
+            {
+                int currentUserId = Convert.ToInt32(Session["UserId"]);
+                if (currentUserId == userId)
+                {
+                    updatebox.Visible = true;
+                }
+            }
+            namebox.Text = user.Name;
+            userAbout.Text = user.About;
+            List<Community> communities = user.CommunityUsers.Where(cu => !cu.Community.isPrivate).Select(cu => cu.Community).ToList();
+            commlistforuser.DataSource = communities;
+            commlistforuser.DataBind();
+            List<Post> posts = user.Posts.Where(post => !post.Community.isPrivate).ToList();
+            postsOfUser.DataSource = posts;
+            postsOfUser.DataBind();
         }
     }
 }

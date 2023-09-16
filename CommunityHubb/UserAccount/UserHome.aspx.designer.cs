@@ -15,40 +15,31 @@ namespace CommunityHubb.UserAccount
     {
 
         /// <summary>
-        /// postslistuser control.
+        /// namebox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource postslistuser;
+        protected global::System.Web.UI.WebControls.Label namebox;
 
         /// <summary>
-        /// commlistforuser control.
+        /// updatebox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource commlistforuser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatebox;
 
         /// <summary>
-        /// titlebox control.
+        /// userAbout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label titlebox;
-
-        /// <summary>
-        /// commdesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label commdesc;
+        protected global::System.Web.UI.WebControls.Label userAbout;
 
         /// <summary>
         /// Label2 control.
@@ -60,13 +51,13 @@ namespace CommunityHubb.UserAccount
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// posts control.
+        /// postsOfUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CommunityHubb.postlist posts;
+        protected global::System.Web.UI.WebControls.Repeater postsOfUser;
 
         /// <summary>
         /// Label1 control.
@@ -76,5 +67,14 @@ namespace CommunityHubb.UserAccount
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// commlistforuser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater commlistforuser;
     }
 }

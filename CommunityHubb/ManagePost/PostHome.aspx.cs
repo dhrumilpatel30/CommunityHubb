@@ -134,6 +134,7 @@ namespace CommunityHubb.ManagePost
                 }
                 replyViews.Add(replyView);
             }
+            replyViews = replyViews.OrderByDescending(x => x.Created).ToList();
             repliesListView.DataSource = replyViews;
             repliesListView.DataBind();
         }
@@ -146,7 +147,7 @@ namespace CommunityHubb.ManagePost
             int replyId = Convert.ToInt32(commandArgument);
             if(null == Session["UserId"])
             {
-                Session["fmsg"] = "Please login to like this post";
+                Session["fmsg"] = "Please login to like";
                 Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
 
@@ -198,7 +199,7 @@ namespace CommunityHubb.ManagePost
             int replyId = Convert.ToInt32(commandArgument);
             if (null == Session["UserId"])
             {
-                Session["fmsg"] = "Please login to dislike this post";
+                Session["fmsg"] = "Please login to dislike";
                 Response.Redirect("~/ManagePost/PostHome?id="+ postData.Id);
             }
 
@@ -357,7 +358,12 @@ namespace CommunityHubb.ManagePost
 
         protected void AddReplyBtn_Click(object sender, EventArgs e)
         {
-            replyBox.Visible = !replyBox.Visible;
+            if(null == Session["UserId"])
+            {
+                Session["fmsg"] = "Please login to reply to this post";
+                Response.Redirect("~/ManagePost/PostHome?id=" + Request.QueryString["id"]);
+            }
+            replyBox.Visible = true;
         }
     }
 }

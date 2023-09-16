@@ -3,14 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main>
-
         <div class="container p-3">
-            <asp:SqlDataSource runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post] WHERE ([Id] = @Id)" ID="Post">
-                <SelectParameters>
-                    <asp:QueryStringParameter QueryStringField="id" Name="Id" Type="Int32"></asp:QueryStringParameter>
-                </SelectParameters>
-            </asp:SqlDataSource>
-
             <div class="row">
                 <div class="col-8">
                     <div class="card m-2">
@@ -60,14 +53,15 @@
                         <div class="card-body d-">
                             <div class="border-bottom border-dark mb-3 d-flex justify-content-between">
                                 <div class="fw-bolder fs-2 mb-2">Replies </div>
-                                <asp:Button class="btn btn-dark" style="height: fit-content;" runat="server" ID="AddReplyBtn" OnClick="AddReplyBtn_Click" Text="Add Reply" />
+                                <asp:Button class="btn btn-dark" Style="height: fit-content;" runat="server" ID="AddReplyBtn" OnClick="AddReplyBtn_Click" Text="Add Reply" />
                             </div>
                             <div runat="server" id="replyBox">
                                 <div class="fs-6 border border-1 p-3 rounded-4">
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="fw-bold">Your Reply</h5>
-                                            <h4 class="fw-bold pt-1 d-flex p-1"><asp:TextBox runat="server" CssClass="w-100 p-3 fw-bold" ID="replyData" TextMode="SingleLine"></asp:TextBox></h4>
+                                            <h4 class="fw-bold pt-1 d-flex p-1">
+                                                <asp:TextBox runat="server" CssClass="w-100 p-3 fw-bold" ID="replyData" TextMode="MultiLine"></asp:TextBox></h4>
                                         </div>
                                         <div class="col-4 align-self-center">
 

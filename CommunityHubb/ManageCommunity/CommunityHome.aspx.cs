@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -53,6 +54,10 @@ namespace CommunityHubb.ManageCommunity
                     followbtn.Text = "Follow Community";
                 }
             }
+            userlist.DataSource = community.CommunityUsers.Select(cu => cu.User).ToList();
+            userlist.DataBind();
+            postlist.DataSource = community.Posts.ToList();
+            postlist.DataBind();
         }
 
         protected void ToggleFollow(object sender, EventArgs e)
@@ -64,8 +69,8 @@ namespace CommunityHubb.ManageCommunity
             else
             {
                 int comId = Convert.ToInt32(Request.QueryString["id"]);
-                Community community = new CommunityHubb.CommunityHubbDBEntities().Communities.Where(c => c.Id == comId).FirstOrDefault();
-                CommunityHubb.CommunityHubbDBEntities communityHubbDB = new CommunityHubb.CommunityHubbDBEntities();
+                Community community = new CommunityHubbDBEntities().Communities.Where(c => c.Id == comId).FirstOrDefault();
+                CommunityHubbDBEntities communityHubbDB = new CommunityHubbDBEntities();
 
                 int userId = Convert.ToInt32(Session["UserId"]);
                 CommunityUser communityUser = community.CommunityUsers.Where(cu => cu.UserId == userId).FirstOrDefault();
@@ -87,16 +92,22 @@ namespace CommunityHubb.ManageCommunity
                         CommunityId = community.Id,
                         IsAdmin = false
                     };
-                    
                     communityHubbDB.CommunityUsers.Add(newCommunityUser);
                     communityHubbDB.SaveChanges();
-                    //communityHubbDB.CommunityUsers.Add(newCommunityUser);
+                    User user = communityHubbDB.Users.Find(userId);
+                    newCommunityUser.User = user;
+                    community.CommunityUsers.Add(newCommunityUser);
                     followbtn.Text = "Unfollow Community";
                 }
-
-
+                generateMembersList(community);
             }
+            
 
+        }
+        protected void generateMembersList(Community community)
+        {
+            userlist.DataSource = community.CommunityUsers.Select(cu => cu.User).ToList();
+            userlist.DataBind();
         }
     }
 }
