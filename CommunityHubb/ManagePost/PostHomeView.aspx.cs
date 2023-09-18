@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CommunityHubb.ManagePost
@@ -16,15 +14,15 @@ namespace CommunityHubb.ManagePost
             CommunityHubbDBEntities communityHubbDBEntities = new CommunityHubb.CommunityHubbDBEntities();
             posts = communityHubbDBEntities.Posts.Where(p => !p.Community.isPrivate).ToList();
             communityUsers = new List<CommunityUser>();
-            if(null != Session["UserId"])
+            if (null != Session["UserId"])
             {
                 int userId = (int)Session["UserId"];
 
                 communityUsers.AddRange(communityHubbDBEntities.CommunityUsers.Where(c => c.UserId == userId).ToList());
 
-                foreach(CommunityUser communityUser in communityUsers)
+                foreach (CommunityUser communityUser in communityUsers)
                 {
-                    if(communityUser.Community.isPrivate)
+                    if (communityUser.Community.isPrivate)
                     {
                         posts.AddRange(communityUser.Community.Posts);
                     }
@@ -33,18 +31,16 @@ namespace CommunityHubb.ManagePost
             posts = posts.OrderByDescending(p => p.Date).ToList();
             postlistview.DataSource = posts;
             postlistview.DataBind();
-            Session["allPosts"] = posts;
-            Session["communityUsers"] = communityUsers;
             genrateFilters();
         }
         private void genrateFilters()
         {
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
-                
+
                 privateRadio.Enabled = false;
                 unfollowedRadio.Enabled = false;
-                followedRadio.Enabled = false;  
+                followedRadio.Enabled = false;
                 publicRadio.Enabled = false;
                 privateRadio.CssClass = "text-black-50";
                 followedRadio.CssClass = "text-black-50";
@@ -56,30 +52,70 @@ namespace CommunityHubb.ManagePost
 
         protected void ApplyFilters(object sender, EventArgs e)
         {
-            List<Post> filteredPosts = Session["allPosts"] as List<Post>;
+            List<Post> filteredPosts = new List<Post>();
+            CommunityHubbDBEntities db = new CommunityHubbDBEntities();
+            if(null != Session["UserId"])
+            {
+                List<Community> communities = new List<Community>();
+                int userId = (int)Session["UserId"];
+                User user = db.Users.Where(u => u.Id == userId).FirstOrDefault();
+                if (privateRadio.Checked)
+                {
+                    if (followedRadio.Checked || bothViewRadio.Checked)
+                    {
+                        communities.AddRange(user.CommunityUsers.Where(cu => cu.Community.isPrivate).Select(cu => cu.Community).ToList());
+                    }
+                }
+                else if (publicRadio.Checked)
+                {
+                    if (followedRadio.Checked)
+                    {
+                        communities.AddRange(user.CommunityUsers.Where(cu => !cu.Community.isPrivate).Select(cu => cu.Community).ToList());
+                    }
+                    else if (unfollowedRadio.Checked)
+                    {
+                        communities.AddRange(db.Communities.Where(c => !c.isPrivate).ToList());
+                        foreach (Community c in user.CommunityUsers.Where(cu => !cu.Community.isPrivate).Select(cu => cu.Community).ToList())
+                        {
+                            communities.Remove(c);
+                        }
+                    }
+                    else
+                    {
+                        communities.AddRange(db.Communities.Where(c => !c.isPrivate).ToList());
+                    }
+                }
+                else
+                {
+                    if (followedRadio.Checked)
+                    {
+                        communities.AddRange(user.CommunityUsers.Select(cu => cu.Community).ToList());
+                    }
+                    else if (unfollowedRadio.Checked)
+                    {
+                        communities.AddRange(db.Communities.ToList());
+                        foreach (Community c in user.CommunityUsers.Select(cu => cu.Community).ToList())
+                        {
+                            communities.Remove(c);
+                        }
+                    }
+                    else
+                    {
+                        communities.AddRange(db.Communities.ToList());
+                    }
+                }
+                foreach (Community community in communities)
+                {
+                    filteredPosts.AddRange(community.Posts);
+                }
+            }
+            else
+            {
+                filteredPosts = db.Posts.Where(p => !p.Community.isPrivate).ToList();
+            }
 
-            if (privateRadio.Checked)
-            {
-                filteredPosts.RemoveAll(p => !p.Community.isPrivate);
-            }
-            else if (publicRadio.Checked)
-            {
-                filteredPosts.RemoveAll(p => p.Community.isPrivate);
-            }
-
-            if (followedRadio.Checked)
-            {
-                communityUsers = Session["communityUsers"] as List<CommunityUser>;
-                filteredPosts.RemoveAll(p => !communityUsers.Exists(c => c.CommunityId == p.CommunityId));
-            }
-            else if (unfollowedRadio.Checked)
-            {
-                communityUsers = Session["communityUsers"] as List<CommunityUser>;
-                filteredPosts.RemoveAll(p => communityUsers.Exists(c => c.CommunityId == p.CommunityId));
-            }
-            
             //sort type
-            if(recentRadio.Checked)
+            if (recentRadio.Checked)
             {
                 filteredPosts = filteredPosts.OrderByDescending(p => p.Date).ToList();
             }

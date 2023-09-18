@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CommunityHubb.ManageCommunity
@@ -30,14 +27,14 @@ namespace CommunityHubb.ManageCommunity
                 List<User> users = community.CommunityUsers.Select(cu => cu.User).ToList();
                 int userId = Convert.ToInt32(Session["UserId"]);
                 if (!users.Any(u => u.Id == userId))
-                { 
+                {
                     Session["fmsg"] = "You are not a member of this private community";
                     Response.Redirect("/");
                 }
             }
             titlebox.Text = community.Name;
             commdesc.Text = community.Description;
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
                 followbtn.Text = "Login to follow";
             }
@@ -101,7 +98,7 @@ namespace CommunityHubb.ManageCommunity
                 }
                 generateMembersList(community);
             }
-            
+
 
         }
         protected void generateMembersList(Community community)

@@ -8,7 +8,7 @@ namespace CommunityHubb.ManagePost
 {
     class ReplyView : Reply
     {
-        public String authorName { get; set;}
+        public String authorName { get; set; }
         public int likeCount { get; set; }
         public int dislikeCount { get; set; }
         public string likeCss { get; set; }
@@ -68,7 +68,7 @@ namespace CommunityHubb.ManagePost
             postDislikeCount.Text = postData.Reactions.Where(rect => !rect.isLike && !rect.isReply).Count().ToString();
 
             int userId = Convert.ToInt32(Session["UserId"]);
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
                 PostLike.CssClass = "btn btn-outline-dark";
                 PostDislike.CssClass = "btn btn-outline-dark";
@@ -77,8 +77,8 @@ namespace CommunityHubb.ManagePost
             else
             {
                 Reaction reaction = postData.Reactions.Where(rect => rect.userId == userId && !rect.isReply).FirstOrDefault();
-                
-                if(null != reaction)
+
+                if (null != reaction)
                 {
                     if (reaction.isLike)
                     {
@@ -113,8 +113,8 @@ namespace CommunityHubb.ManagePost
                 replyView.likeCount = reply.Reactions.Where(rect => rect.isLike).Count();
                 replyView.dislikeCount = reply.Reactions.Where(rect => !rect.isLike).Count();
                 replyView.authorName = reply.User.Name;
-                Reaction reaction = reply.Reactions.Where(rect =>rect.userId == userId).FirstOrDefault();
-                if(null != reaction)
+                Reaction reaction = reply.Reactions.Where(rect => rect.userId == userId).FirstOrDefault();
+                if (null != reaction)
                 {
                     if (reaction.isLike)
                     {
@@ -145,7 +145,7 @@ namespace CommunityHubb.ManagePost
             Post postData = entities.Posts.Where(x => x.Id == postId).FirstOrDefault();
             string commandArgument = ((Button)sender).CommandArgument;
             int replyId = Convert.ToInt32(commandArgument);
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
                 Session["fmsg"] = "Please login to like";
                 Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
@@ -155,11 +155,11 @@ namespace CommunityHubb.ManagePost
             if (null == reply)
             {
                 Session["fmsg"] = "Reply not found";
-                Response.Redirect("~/ManagePost/PostHome?id="+postData.Id);
+                Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
             int userId = Convert.ToInt32(Session["UserId"]);
             Reaction reaction = reply.Reactions.Where(x => x.userId == userId).FirstOrDefault();
-            if(null == reaction)
+            if (null == reaction)
             {
                 reaction = new Reaction
                 {
@@ -200,14 +200,14 @@ namespace CommunityHubb.ManagePost
             if (null == Session["UserId"])
             {
                 Session["fmsg"] = "Please login to dislike";
-                Response.Redirect("~/ManagePost/PostHome?id="+ postData.Id);
+                Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
 
             Reply reply = postData.Replies.Where(x => x.Id == replyId).FirstOrDefault();
             if (null == reply)
             {
                 Session["fmsg"] = "Reply not found";
-                Response.Redirect("~/ManagePost/PostHome?id="+ postData.Id);
+                Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
             int userId = Convert.ToInt32(Session["UserId"]);
             Reaction reaction = reply.Reactions.Where(x => x.userId == userId).FirstOrDefault();
@@ -225,7 +225,7 @@ namespace CommunityHubb.ManagePost
             }
             else
             {
-                if(reaction.isLike)
+                if (reaction.isLike)
                 {
                     reaction.isLike = false;
                 }
@@ -326,7 +326,7 @@ namespace CommunityHubb.ManagePost
 
         protected void SaveReply_Click(object sender, EventArgs e)
         {
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
                 Session["fmsg"] = "Please login to reply to this post";
                 Response.Redirect("~/ManagePost/PostHome?id=" + Request.QueryString["id"]);
@@ -358,7 +358,7 @@ namespace CommunityHubb.ManagePost
 
         protected void AddReplyBtn_Click(object sender, EventArgs e)
         {
-            if(null == Session["UserId"])
+            if (null == Session["UserId"])
             {
                 Session["fmsg"] = "Please login to reply to this post";
                 Response.Redirect("~/ManagePost/PostHome?id=" + Request.QueryString["id"]);

@@ -11,7 +11,7 @@ namespace CommunityHubb.UserAccount
 {
 
 
-    public partial class UserHome
+    public partial class HomeAccount
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace CommunityHubb.UserAccount
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label namebox;
+
+        /// <summary>
+        /// updatebox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatebox;
 
         /// <summary>
         /// userAbout control.

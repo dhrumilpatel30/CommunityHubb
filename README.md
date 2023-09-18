@@ -23,10 +23,9 @@ like dislike for reply and post
 
 update profile
 
-
-## Remaining:
 community home filters
 
+## Remaining:
 add post in community page
 
 delete post, community and reply
@@ -34,7 +33,6 @@ delete post, community and reply
 manage users in private community
 
 ## optionals may be added:
-
 unique string validation
 
 home page

@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <asp:Button ID="applyFiltersButton" runat="server" Text="Apply Filters" CssClass="btn btn-primary mt-3" OnClick="ApplyFilters" />
+                <asp:Button ID="applyFiltersButton" runat="server" Text="Apply Filters" CssClass="btn btn-dark mt-3" OnClick="ApplyFilters" />
             </div>
 
         <div class="col-8">

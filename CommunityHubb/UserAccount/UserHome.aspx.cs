@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CommunityHubb.UserAccount
@@ -11,19 +9,11 @@ namespace CommunityHubb.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            updatebox.Visible = false;
             int userId = 0;
             if (null == Request.QueryString["id"])
             {
-                if(null != Session["UserId"])
-                {
-                    userId = Convert.ToInt32(Session["UserId"]);
-                }
-                else
-                {
-                    Session["fmsg"] = "Invalid User Id";
-                    Response.Redirect("/");
-                }
+                Session["fmsg"] = "Invalid User Id";
+                Response.Redirect("/");
             }
             else
             {
@@ -35,14 +25,6 @@ namespace CommunityHubb.UserAccount
             {
                 Session["fmsg"] = "User not found";
                 Response.Redirect("/");
-            }
-            if(null != Session["UserId"])
-            {
-                int currentUserId = Convert.ToInt32(Session["UserId"]);
-                if (currentUserId == userId)
-                {
-                    updatebox.Visible = true;
-                }
             }
             namebox.Text = user.Name;
             userAbout.Text = user.About;

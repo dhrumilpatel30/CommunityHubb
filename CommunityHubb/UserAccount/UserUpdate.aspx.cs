@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CommunityHubb.UserAccount
 {
@@ -27,7 +23,7 @@ namespace CommunityHubb.UserAccount
                 if (!IsPostBack)
                 {
                     numberbox.Text = user.Phone;
-                    dobbox.Text= user.Dob.GetValueOrDefault().ToString("yyyy-MM-dd");
+                    dobbox.Text = user.Dob.GetValueOrDefault().ToString("yyyy-MM-dd");
                     aboutbox.Text = user.About;
                 }
             }

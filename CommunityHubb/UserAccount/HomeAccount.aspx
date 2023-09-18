@@ -1,8 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserHome.aspx.cs" Inherits="CommunityHubb.UserAccount.UserHome" EnableEventValidation="false" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomeAccount.aspx.cs" Inherits="CommunityHubb.UserAccount.HomeAccount" EnableEventValidation="false"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    <main>
+ <main>
 
         <div class="container p-3">
 
@@ -13,6 +11,9 @@
                             <div class="row border-bottom border-dark m-1">
                                 <div class="col-9">
                                     <asp:Label class="fw-bolder fs-1 mb-2" runat="server" Text="User Name" ID="namebox"></asp:Label>
+                                </div>
+                                <div runat="server" class="col-3" id="updatebox">
+                                    <a class="btn btn-dark p-2 d-block" href="UserUpdate.aspx">Update Your Profile</a>
                                 </div>
                             </div>
                             <div class="m-2 ms-3 fs-5">
@@ -45,6 +46,7 @@
                                                         <div class="d-flex justify-content-between">
                                                         <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
                                                             
+    <asp:Button runat="server" CssClass="m-2 fs-5 fw-bold btn btn-danger" Text="Delete" ID="deleteButton" OnClick="deleteButton_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
 </div>
                                                     </div>
                                                 </td>
@@ -86,4 +88,5 @@
             </div>
         </div>
     </main>
+
 </asp:Content>

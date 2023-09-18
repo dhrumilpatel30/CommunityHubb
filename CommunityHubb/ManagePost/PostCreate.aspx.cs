@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CommunityHubb.ManagePost
 {
@@ -17,7 +13,7 @@ namespace CommunityHubb.ManagePost
                 Response.Redirect("/");
             }
             String communityId = Request.QueryString["id"];
-            if(communityId == null)
+            if (communityId == null)
             {
                 Session["fmsg"] = "Community Not Found";
                 Response.Redirect("/");
@@ -26,7 +22,7 @@ namespace CommunityHubb.ManagePost
             CommunityHubbDBEntities communityHubbDB = new CommunityHubbDBEntities();
             int userId = int.Parse(Session["UserId"].ToString());
             int communityIdInt = int.Parse(communityId);
-            Community community =  communityHubbDB.Communities.Where(c => c.Id == communityIdInt).FirstOrDefault();
+            Community community = communityHubbDB.Communities.Where(c => c.Id == communityIdInt).FirstOrDefault();
             if (community == null)
             {
                 Session["fmsg"] = "Community Not Found";
@@ -45,7 +41,7 @@ namespace CommunityHubb.ManagePost
 
         protected void CreatePost(object sender, EventArgs e)
         {
-          CommunityHubbDBEntities communityHubbDB = new CommunityHubbDBEntities();
+            CommunityHubbDBEntities communityHubbDB = new CommunityHubbDBEntities();
 
             Post post = new Post();
             post.Title = titleinput.Text;
@@ -60,9 +56,9 @@ namespace CommunityHubb.ManagePost
             communityHubbDB.Posts.Add(post);
             communityHubbDB.SaveChanges();
             Session["smsg"] = "Post Created Successfully";
-            
-            Response.Redirect("~/ManagePost/PostHome?id="+post.Id.ToString());
-            
+
+            Response.Redirect("~/ManagePost/PostHome?id=" + post.Id.ToString());
+
         }
     }
 }

@@ -370,6 +370,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="UserAccount\Home.aspx" />
+    <Content Include="UserAccount\HomeAccount.aspx" />
     <Content Include="UserAccount\Login.aspx" />
     <Content Include="UserAccount\Signup.aspx" />
     <Content Include="UserAccount\UserHome.aspx" />
@@ -377,7 +378,6 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
-    <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -471,13 +471,6 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>CommunityHubModel.tt</DependentUpon>
     </Compile>
@@ -487,6 +480,13 @@
     </Compile>
     <Compile Include="UserAccount\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount\HomeAccount.aspx.cs">
+      <DependentUpon>HomeAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount\HomeAccount.aspx.designer.cs">
+      <DependentUpon>HomeAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserAccount\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
