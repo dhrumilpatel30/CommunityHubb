@@ -27,8 +27,8 @@ community home filters
 
 delete post
 
-## Remaining:
 add post in community page
+## Remaining:
 
 community and reply
 
