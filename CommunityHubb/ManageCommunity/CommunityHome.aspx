@@ -7,12 +7,12 @@
 
             <div class="row">
                 <div class="col-8">
-                    <div class="card m-2" style="height: 200px">
+                    <div class="card m-2">
                         <div class="card-body">
                             <div class="border-bottom border-dark row m-1">
-                                <asp:Label class="fw-bolder fs-1 mb-2 col-9" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
-                                <div class="col-3">
-                                    <asp:Button CssClass="btn btn-dark d-block" runat="server" ID="followbtn" OnClick="ToggleFollow" />
+                                <asp:Label class="fw-bolder fs-1 mb-2 col-8" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
+                                <div class="col-4">
+                                    <asp:Button CssClass="btn btn-dark d-block fw-bold fs-5" runat="server" ID="followbtn" OnClick="ToggleFollow" />
                                 </div>
 
                             </div>
@@ -20,6 +20,7 @@
                                 <div class="fw-bold">Description:</div>
                                 <asp:Label ID="commdesc" runat="server" Text="This is description" CssClass="m-2 fs-5"></asp:Label>
                             </div>
+                            <a id="createButton" runat="server" class="btn btn-dark m-1 d-block fs-5 fw-bold">Create Post in community</a>
                         </div>
                     </div>
                     <div class="card m-2">

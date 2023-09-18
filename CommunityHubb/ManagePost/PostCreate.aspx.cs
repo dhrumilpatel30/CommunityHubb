@@ -9,7 +9,7 @@ namespace CommunityHubb.ManagePost
         {
             if (Session["UserId"] == null)
             {
-                Session["fmsg"] = "You are Not Logged In";
+                Session["fmsg"] = "Please log in to create post";
                 Response.Redirect("/");
             }
             String communityId = Request.QueryString["id"];

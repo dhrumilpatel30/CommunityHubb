@@ -25,10 +25,12 @@ update profile
 
 community home filters
 
+delete post
+
 ## Remaining:
 add post in community page
 
-delete post, community and reply
+community and reply
 
 manage users in private community
 

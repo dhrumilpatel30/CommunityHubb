@@ -55,6 +55,7 @@ namespace CommunityHubb.ManageCommunity
             userlist.DataBind();
             postlist.DataSource = community.Posts.ToList();
             postlist.DataBind();
+            createButton.HRef = "~/ManagePost/PostCreate.aspx?id=" + communityId;
         }
 
         protected void ToggleFollow(object sender, EventArgs e)
