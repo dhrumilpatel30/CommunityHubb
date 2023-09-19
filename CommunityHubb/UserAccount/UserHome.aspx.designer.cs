@@ -42,6 +42,24 @@ namespace CommunityHubb.UserAccount
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
+        /// navPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button navPost;
+
+        /// <summary>
+        /// navReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button navReply;
+
+        /// <summary>
         /// postsOfUser control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace CommunityHubb.UserAccount
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater postsOfUser;
+
+        /// <summary>
+        /// replyForUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater replyForUser;
 
         /// <summary>
         /// Label1 control.

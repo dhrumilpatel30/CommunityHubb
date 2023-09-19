@@ -25,7 +25,11 @@
                     <div class="card m-2">
                         <div class="card-body">
                             <div class="border-bottom border-dark mb-2">
-                                <asp:Label class="fw-bolder fs-3" runat="server" Text="Posts by user" ID="Label2"></asp:Label>
+                                <asp:Label class="fw-bolder fs-3" runat="server" Text="User Creations" ID="Label2"></asp:Label>
+                            </div>
+                            <div class="d-flex m-2 justify-content-around">
+                                <asp:Button runat="server" OnClick="navPost_Click" ID="navPost" Text="Posts" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
+                                <asp:Button runat="server" OnClick="navReply_Click" ID="navReply" Text="Replies" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
                             </div>
                             <table class="table-borderless w-100">
                                 <asp:Repeater runat="server" ID="postsOfUser">
@@ -33,19 +37,40 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
-                                                        class="btn btn-light border border-1 container p-3 rounded-4 m-1">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div style='font-weight: 600'>
-                                                                In:<a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"> <%# Eval("CommunityName") %></span> </a>, 
-                                                                By <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                    <div class="row mb-1">
+                                                        <div class="col-12">
+                                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                                                class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                                <div class="d-flex" style='font-weight: 600'>
+                                                                    In Community: <a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none ms-1"><span class="fw-bolder"><%# Eval("CommunityName") %></span> </a>
+                                                                </div>
+                                                                <h4 class="fw-bold d-flex"><%#Eval("Title") %></h4>
+                                                                <div class="d-flex" style='font-weight: 500'>Posted On: <%#Eval("Date") %></div>
                                                             </div>
-                                                            <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
                                                         </div>
-                                                        <div class="d-flex justify-content-between">
-                                                        <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
-                                                            
-</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                                <asp:Repeater runat="server" ID="replyForUser">
+                                    <ItemTemplate>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="row mb-1">
+                                                        <div class="col-12">
+                                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("PostId") %>`'
+                                                                class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                                <div class="d-flex" style='font-weight: 600'>
+                                                                    On Post: <a href='../ManagePost/PostHome.aspx?id=<%#Eval("PostId")%>' class="text-decoration-none ms-2"><span class="fw-bolder"><%# Eval("Post.Title") %></span> </a>
+                                                                </div>
+                                                                <h5 class="fw-bold pt-1 d-flex"><%#Eval("Content") %></h5>
+                                                                <div class="d-flex" style='font-weight: 500'>Replied On: <%#Eval("Created") %></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -7,48 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommunityHubb.UserAccount
+namespace CommunityHubb.ManageCommunity
 {
 
 
-    public partial class HomeAccount
+    public partial class Manage
     {
 
         /// <summary>
-        /// namebox control.
+        /// titlebox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label namebox;
+        protected global::System.Web.UI.WebControls.Label titlebox;
 
         /// <summary>
-        /// updatebox control.
+        /// commdesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatebox;
-
-        /// <summary>
-        /// userAbout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userAbout;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label commdesc;
 
         /// <summary>
         /// navPost control.
@@ -60,66 +42,66 @@ namespace CommunityHubb.UserAccount
         protected global::System.Web.UI.WebControls.Button navPost;
 
         /// <summary>
-        /// navReply control.
+        /// navUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button navReply;
+        protected global::System.Web.UI.WebControls.Button navUser;
 
         /// <summary>
-        /// navComm control.
+        /// postsView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button navComm;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postsView;
 
         /// <summary>
-        /// postsOfUser control.
+        /// postsOfCommunity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater postsOfUser;
+        protected global::System.Web.UI.WebControls.Repeater postsOfCommunity;
 
         /// <summary>
-        /// replyForUser control.
+        /// userView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater replyForUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userView;
 
         /// <summary>
-        /// commListOfUser control.
+        /// usersOfCommAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater commListOfUser;
+        protected global::System.Web.UI.WebControls.Repeater usersOfCommAdmin;
 
         /// <summary>
-        /// Label1 control.
+        /// userOfCommNonAdm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Repeater userOfCommNonAdm;
 
         /// <summary>
-        /// commlistforuser control.
+        /// nonUserOfComm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater commlistforuser;
+        protected global::System.Web.UI.WebControls.Repeater nonUserOfComm;
     }
 }

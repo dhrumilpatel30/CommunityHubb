@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomeAccount.aspx.cs" Inherits="CommunityHubb.UserAccount.HomeAccount" EnableEventValidation="false"  %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomeAccount.aspx.cs" Inherits="CommunityHubb.UserAccount.HomeAccount" EnableEventValidation="false" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
- <main>
+    <main>
 
         <div class="container p-3">
 
@@ -26,7 +27,12 @@
                     <div class="card m-2">
                         <div class="card-body">
                             <div class="border-bottom border-dark mb-2">
-                                <asp:Label class="fw-bolder fs-3" runat="server" Text="Posts by user" ID="Label2"></asp:Label>
+                                <asp:Label class="fw-bolder fs-3" runat="server" Text="Your Creations" ID="Label2"></asp:Label>
+                            </div>
+                            <div class="d-flex m-2 justify-content-around">
+                                <asp:Button runat="server" OnClick="navPost_Click" ID="navPost" Text="Posts" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
+                                <asp:Button runat="server" OnClick="navReply_Click" ID="navReply" Text="Replies" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
+                                <asp:Button runat="server" OnClick="navComm_Click" ID="navComm" Text="Communities" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
                             </div>
                             <table class="table-borderless w-100">
                                 <asp:Repeater runat="server" ID="postsOfUser">
@@ -34,20 +40,72 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
-                                                        class="btn btn-light border border-1 container p-3 rounded-4 m-1">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div style='font-weight: 600'>
-                                                                In:<a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"> <%# Eval("CommunityName") %></span> </a>, 
-                                                                By <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                    <div class="row mb-1">
+                                                        <div class="col-10">
+                                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                                                class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                                <div class="d-flex" style='font-weight: 600'>
+                                                                    In Community: <a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("CommunityName") %></span> </a>
+                                                                </div>
+                                                                <h4 class="fw-bold d-flex"><%#Eval("Title") %></h4>
+                                                                <div class="d-flex" style='font-weight: 500'>Posted On: <%#Eval("Date") %></div>
                                                             </div>
-                                                            <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
                                                         </div>
-                                                        <div class="d-flex justify-content-between">
-                                                        <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
-                                                            
-    <asp:Button runat="server" CssClass="m-2 fs-5 fw-bold btn btn-danger" Text="Delete" ID="deleteButton" OnClick="deleteButton_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
-</div>
+                                                        <div class="col-2">
+                                                            <asp:Button runat="server" CssClass="fs-5 fw-bold btn btn-danger" Text="Delete" ID="deletePost" OnClick="deletePost_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                                <asp:Repeater runat="server" ID="replyForUser">
+                                    <ItemTemplate>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="row mb-1">
+                                                        <div class="col-10">
+                                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("PostId") %>`'
+                                                                class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                                <div class="d-flex" style='font-weight: 600'>
+                                                                    On Post: <a href='../ManagePost/PostHome.aspx?id=<%#Eval("PostId")%>' class="text-decoration-none ms-2"><span class="fw-bolder"><%# Eval("Post.Title") %></span> </a>
+                                                                </div>
+                                                                <h5 class="fw-bold pt-1 d-flex"><%#Eval("Content") %></h5>
+                                                                <div class="d-flex" style='font-weight: 500'>Replied On: <%#Eval("Created") %></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <asp:Button runat="server" CssClass="fs-5 fw-bold btn btn-danger" Text="Delete" ID="deleteReply" OnClick="deleteReply_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                                <asp:Repeater runat="server" ID="commListOfUser">
+                                    <ItemTemplate>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-10 mb-1">
+
+                                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManageCommunity/CommunityHome.aspx?id=<%#Eval("Id") %>`'
+                                                                class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                                <div class="d-flex" style='font-weight: 500'>Created On: <%#Eval("CreatedDate") %></div>
+                                                                <h4 class="fw-bold pt-1 d-flex"><%#Eval("Name") %></h4>
+                                                                <h6 class="d-flex"><%#Eval("Description") %></h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <asp:Button runat="server" CssClass="fs-5 fw-bold btn btn-danger mb-1" Text="Delete" ID="deleteCommunity" OnClick="deleteCommunity_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                            <a class="fs-5 fw-bold btn btn-dark" href='../ManageCommunity/Manage.aspx?id=<%#Eval("Id") %>'>Manage</a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -146,6 +146,7 @@
     <Content Include="ManageCommunity\CommunityHome.aspx" />
     <Content Include="ManageCommunity\CommunityHomeView.aspx" />
     <Content Include="ManageCommunity\CreateCommunity.aspx" />
+    <Content Include="ManageCommunity\Manage.aspx" />
     <Content Include="ManagePost\PostCreate.aspx" />
     <Content Include="ManagePost\PostHome.aspx" />
     <Content Include="ManagePost\PostHomeView.aspx" />
@@ -426,6 +427,13 @@
     </Compile>
     <Compile Include="ManageCommunity\CreateCommunity.aspx.designer.cs">
       <DependentUpon>CreateCommunity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCommunity\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCommunity\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagePost\PostCreate.aspx.cs">
       <DependentUpon>PostCreate.aspx</DependentUpon>

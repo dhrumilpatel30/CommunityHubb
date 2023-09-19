@@ -25,14 +25,15 @@ update profile
 
 community home filters
 
-delete post
+delete post, community and reply
 
 add post in community page
-## Remaining:
-
-community and reply
 
 manage users in private community
+## Remaining:
+
+None
+
 
 ## optionals may be added:
 unique string validation
