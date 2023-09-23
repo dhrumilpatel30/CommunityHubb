@@ -28,13 +28,13 @@
                 <div class="form-group">
                     <label class="fs-5 fw-bold">Sorting Method:</label>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" Checked="True"  />
+                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" Checked="True" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="popularRadio" runat="server" Text=" Popular" GroupName="sortingMethod" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod"/>
+                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="alphabeticalRadio" runat="server" Text=" Alphabetical" GroupName="sortingMethod" />
@@ -57,34 +57,30 @@
                 <asp:Button ID="applyFiltersButton" runat="server" Text="Apply Filters" CssClass="btn btn-dark mt-3" OnClick="ApplyFilters" />
             </div>
 
-        <div class="col-8">
+            <div class="col-8">
 
-            <table class="table-borderless w-100">
-                <asp:Repeater runat="server" ID="postlistview">
-                    <ItemTemplate>
-                        <tbody class="table">
+                <table class="table-borderless w-100">
+                    <asp:Repeater runat="server" ID="postlistview">
+                        <ItemTemplate>
                             <tr>
-                                <td>
-                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
-    Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
-                                        class="btn btn-light border border-1 container p-3 rounded-4 m-1">
+                                <div class="col-12 m-2">
+                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                        class="btn btn-light border border-1 p-3 rounded-4 w-100">
                                         <div class="d-flex justify-content-between">
                                             <div style='font-weight: 600'>
-                                                In:<a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"> <%# Eval("CommunityName") %></span> </a>, 
-                                            By
-                                            <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                In: <a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("CommunityName") %></span> </a>, 
+                                                        By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
                                             </div>
                                             <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
                                         </div>
-                                        <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
+                                        <h3 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h3>
                                     </div>
-                                </td>
+                                </div>
                             </tr>
-                        </tbody>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </table>
-        </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </table>
+            </div>
         </div>
     </main>
 </asp:Content>

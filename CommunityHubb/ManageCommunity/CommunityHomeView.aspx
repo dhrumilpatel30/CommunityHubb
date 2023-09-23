@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommunityHomeView.aspx.cs" Inherits="CommunityHubb.ManageCommunity.CommunityHomeView" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <main>
+    <main>
         <div class="container-fluid p-3">
             <div class="fw-bolder display-6 mb-3">Communities</div>
         </div>
@@ -26,13 +27,13 @@
                 <div class="form-group">
                     <label class="fs-5 fw-bold">Sorting Method:</label>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" Checked="True"  />
+                        <asp:RadioButton ID="recentRadio" runat="server" Text=" Recent" GroupName="sortingMethod" Checked="True" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="popularRadio" runat="server" Text=" Popular" GroupName="sortingMethod" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
-                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod"/>
+                        <asp:RadioButton ID="randomRadio" runat="server" Text=" Random" GroupName="sortingMethod" />
                     </div>
                     <div class="form-check ps-2 p-1 fw-bold">
                         <asp:RadioButton ID="alphabeticalRadio" runat="server" Text=" Alphabetical" GroupName="sortingMethod" />
@@ -55,34 +56,30 @@
                 <asp:Button ID="applyFiltersButton" runat="server" Text="Apply Filters" CssClass="btn btn-dark mt-3" OnClick="applyFiltersButton_Click" />
             </div>
 
-        <div class="col-8">
+            <div class="col-8">
 
-            <table class="table-borderless w-100">
-                <asp:Repeater runat="server" ID="communityListView">
-                    <ItemTemplate>
-                       <tbody class="table">
-                         <tr>
-                             <td>
-                                 <a href='<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
-    Request.ApplicationPath.TrimEnd('/') + "/" %>ManageCommunity/CommunityHome.aspx?id=<%#Eval("Id") %>' class="text-decoration-none">
-                                     <div class="btn btn-outline-dark container p-3 rounded-4 m-1">
+                <table class="table-borderless w-100">
+                    <asp:Repeater runat="server" ID="communityListView">
+                        <ItemTemplate>
+                            <tr>
+                                <div class="col-12 m-2">
+                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManageCommunity/CommunityHome.aspx?id=<%#Eval("Id") %>`'
+                                        class="btn btn-light border border-1 p-3 rounded-4 w-100">
 
-                                         <div class="fw-bold pt-1 h3 d-flex"><%# Eval("Name") %></div>
+                                        <div class="fw-bold pt-1 h3 d-flex"><%# Eval("Name") %></div>
 
-                                         <div class="d-flex justify-content-md-start">
-                                             <div style='font-weight: 600'>Description:<span class="fw-bolder"> <%# Eval("Description") %></span></div>
-                                         </div>
-                                     </div>
-                                 </a>
-                             </td>
-                         </tr>
-                     </tbody>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </table>
-        </div>
+                                        <div class="d-flex justify-content-md-start">
+                                            <div style='font-weight: 600'>Description:<span class="fw-bolder"> <%# Eval("Description") %></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </table>
+            </div>
         </div>
 
 
- </main>
+    </main>
 </asp:Content>

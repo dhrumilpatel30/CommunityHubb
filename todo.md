@@ -32,10 +32,9 @@ add post in community page
 manage users in private community
 ## Remaining:
 
-None
+None for now :)
 
-
-## optionals may be added:
+## optional( "may" be added):
 unique string validation
 
 home page
@@ -44,3 +43,5 @@ view post count in community card, userhome page etc
 
 profile has more details
 
+## design changes needed:
+side list in profile page and community page

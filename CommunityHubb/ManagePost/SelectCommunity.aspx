@@ -15,23 +15,19 @@
 
                 <asp:Repeater runat="server" DataSourceID="userCommunities">
                     <ItemTemplate>
+                        <tr>
+                            <div class="col-12 m-2">
+                                <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostCreate.aspx?id=<%#Eval("Id") %>`'
+                                    class="btn btn-light border border-1 p-3 rounded-4 w-100">
 
-                        <tbody class="table">
-                            <tr>
-                                <td>
-                                    <a href="PostCreate.aspx?id=<%#Eval("Id") %>" class="text-decoration-none">
-                                        <div class="btn btn-outline-dark container p-3 rounded-4 m-1">
+                                    <div class="fw-bold pt-1 h3 d-flex"><%# Eval("Name") %></div>
 
-                                            <div class="fw-bold pt-1 h3 d-flex"><%# Eval("Name") %></div>
-
-                                            <div class="d-flex justify-content-md-start">
-                                                <div style='font-weight: 600'>Description:<span class="fw-bolder"> <%# Eval("Description") %></span></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    <div class="d-flex justify-content-md-start">
+                                        <div style='font-weight: 600'>Description:<span class="fw-bolder"> <%# Eval("Description") %></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </table>

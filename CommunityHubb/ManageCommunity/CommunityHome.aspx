@@ -23,32 +23,30 @@
                             <a id="createButton" runat="server" class="btn btn-dark m-1 d-block fs-5 fw-bold">Create Post in community</a>
                         </div>
                     </div>
-                    <div class="card m-2">
+                    <div class="card m-2 border-0">
                         <div class="card-body">
-                            <div class="border-bottom border-dark mb-2 ">
+                            <div class="border-bottom border-dark mb-3 ">
                                 <asp:Label class="fw-bolder fs-3" runat="server" Text="Posts" ID="Label2"></asp:Label>
                             </div>
 
                             <table class="table-borderless w-100">
                                 <asp:Repeater runat="server" ID="postlist">
                                     <ItemTemplate>
-                                        <tbody class="table">
-                                            <tr>
-                                                <td>
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
-                                                        class="btn btn-light border border-1 container p-3 rounded-4 m-1">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div style='font-weight: 600'>
-                                                                In:<a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"> <%# Eval("CommunityName") %></span> </a>, 
-                                                                By <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
-                                                            </div>
-                                                            <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
+                                        <tr>
+                                            <div class="col-12 m-2">
+                                                <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                                    class="btn btn-light border border-1 p-3 rounded-4 w-100">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div style='font-weight: 600'>
+                                                            In: <a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("CommunityName") %></span> </a>, 
+                                By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
                                                         </div>
-                                                        <h2 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h2>
+                                                        <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                                    <h4 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h4>
+                                                </div>
+                                            </div>
+                                        </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </table>
