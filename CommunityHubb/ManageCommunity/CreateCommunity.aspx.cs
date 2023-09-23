@@ -8,7 +8,7 @@ namespace CommunityHubb.ManageCommunity
         {
             if (Session["UserId"] == null)
             {
-                Session["fmsg"] = "Please login to continue";
+                Session["fmsg"] = "Please login to create community";
                 Response.Redirect("~/");
             }
         }

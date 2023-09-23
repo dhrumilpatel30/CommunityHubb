@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="card mb-3">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <div class="fw-bolder fs-3 mb-3">Account details</div>
                         <div class="mb-3">
                             <label class="form-label ml-1 fw-bold fs-5">Email</label>

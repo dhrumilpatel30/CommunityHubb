@@ -12,7 +12,7 @@ namespace CommunityHubb.ManageCommunity
         {
             if (null == Request.QueryString["id"])
             {
-                Session["fmsg"] = "Invalid Community Id";
+                Session["fmsg"] = "Invalid community id, please try again";
                 Response.Redirect("~/");
             }
             int communityId = Convert.ToInt32(Request.QueryString["id"]);
@@ -23,24 +23,25 @@ namespace CommunityHubb.ManageCommunity
             int userId;
             if (null == Session["UserId"])
             {
-                Session["fmsg"] = "To view this page please login";
+                Session["fmsg"] = "Please login to manage community";
                 Response.Redirect("~/");
             }
             userId = Convert.ToInt32(Session["UserId"]);
             if (null == community)
             {
-                Session["fmsg"] = "Community not found";
+                Session["fmsg"] = "Community not found, please try again";
                 Response.Redirect("~/");
             }
             if (!entities.CommunityUsers.Where(cu => cu.CommunityId == communityId && cu.UserId == userId).FirstOrDefault().IsAdmin)
             {
-                Session["fmsg"] = "You are Not Admin of this community";
+                Session["fmsg"] = "You are not admin to manage this community";
                 Response.Redirect("~/");
             }
             List<Post> posts = community.Posts.OrderByDescending(post => post.Date).ToList();
             postsOfCommunity.DataSource = posts;
             postsOfCommunity.DataBind();
-            titlebox.Text = community.Name;
+            titlebox.InnerText = community.Name;
+            titlebox.HRef = "~/ManageCommunity/Communityhome?id=" + community.Id;
             commdesc.Text = community.Description;
             List<User> usersNonAdmin = community.CommunityUsers.Where(cu => !cu.IsAdmin).Select(cu => cu.User).ToList();
             List<User> userAdmin = community.CommunityUsers.Where(cu => cu.IsAdmin).Select(cu => cu.User).ToList();

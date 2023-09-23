@@ -22,7 +22,7 @@ namespace CommunityHubb.UserAccount
                 {
                     Session["UserId"] = user.Id;
                     Session["UserName"] = user.Name;
-                    Session["smsg"] = "Welcome " + user.Name + ", Login successful";
+                    Session["smsg"] = "Welcome " + user.Name + ", you are successfully logged in";
                     //Response.Redirect("~/UserAccount/Profile.aspx");
                     Response.Redirect("~/");
                 }

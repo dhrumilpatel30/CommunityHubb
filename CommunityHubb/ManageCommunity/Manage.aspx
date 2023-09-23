@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-8">
                 <div class="card m-2">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <div class="border-bottom border-dark m-1">
-                            <asp:Label class="fw-bolder fs-1 mb-2 col-8" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
+                            <a class="fw-bolder fs-1 mb-2 col-8 text-decoration-none" runat="server" Text="Community Name" ID="titlebox"></a>
                         </div>
                         <div class="m-2 ms-3 fs-5">
                             <div class="fw-bold">Description:</div>
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="card m-2">
+        <div class="card m-2 border-0">
             <div class="card-body">
                 <div class="border-bottom border-dark mb-3 d-flex justify-content-between">
                     <div class="fw-bolder fs-2 mb-2">Manage Community </div>

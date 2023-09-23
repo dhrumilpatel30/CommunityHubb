@@ -6,7 +6,7 @@
         <div class="container p-3">
             <div class="row">
                 <div class="col-8">
-                    <div class="card m-2">
+                    <div class="card m-2 bg-light">
                         <div class="card-body">
                             <div class="border-bottom border-dark">
                                 <asp:Label class="fw-bolder fs-1 mb-2" runat="server" ID="titlebox"></asp:Label>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card m-2">
+                    <div class="card m-2 bg-light">
                         <div class="card-body">
                             <div class="fw-bold fs-4 ms-2 mt-2">Community</div>
                             <a runat="server" id="communityLink" class="text-decoration-none">
@@ -56,7 +56,7 @@
                                 <asp:Button class="btn btn-dark" Style="height: fit-content;" runat="server" ID="AddReplyBtn" OnClick="AddReplyBtn_Click" Text="Add Reply" />
                             </div>
                             <div runat="server" id="replyBox">
-                                <div class="fs-6 border border-1 p-3 rounded-4">
+                                <div class="fs-6 border border-1 p-3 rounded-4 bg-light">
                                     <div class="row">
                                         <div class="col-8">
                                             <h5 class="fw-bold">Your Reply</h5>
@@ -74,7 +74,7 @@
                             <asp:Repeater runat="server" ID="repliesListView">
                                 <ItemTemplate>
 
-                                    <div class="fs-6 border border-1 p-3 rounded-4 mt-2">
+                                    <div class="fs-6 bg-light border border-1 p-3 rounded-4 mt-2">
                                         <div class="row">
                                             <div class="col-8">
 
@@ -82,8 +82,7 @@
                                                 </div>
                                                 <h4 class="fw-bold pt-1 d-flex"><%#Eval("Content") %></h4>
                                                 <div style='font-weight: 600; font-size: 0.9rem;'>
-                                                    By
-         <a href='../UserAccount/UserHome.aspx?id=<%#Eval("UserId") %>' class="text-decoration-none"><span class="fw-bolder"><%#Eval("authorName") %></span></a>, On: <%#Eval("Created") %>
+                                                    By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("UserId") %>' class="text-decoration-none"><span class="fw-bolder"><%#Eval("authorName") %></span></a>, On: <%#Eval("Created") %>
                                                 </div>
                                             </div>
                                             <div class="col-4 align-self-center">

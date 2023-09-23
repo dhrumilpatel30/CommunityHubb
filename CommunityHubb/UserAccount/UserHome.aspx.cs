@@ -9,19 +9,19 @@ namespace CommunityHubb.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int userId = 0;
+            int userId;
             if (null == Request.QueryString["id"])
             {
-                Session["fmsg"] = "Invalid User Id";
+                Session["fmsg"] = "Invalid user id, please try again";
                 Response.Redirect("/");
             }
             else
             {
                 userId = Convert.ToInt32(Request.QueryString["id"]);
-                if(null != Session["userId"])
+                if(null != Session["UserId"])
                 {
-                    if (Convert.ToInt32(Session["userId"]) == userId)
-                    {
+                    if (Convert.ToInt32(Session["UserId"]) == userId)
+                    {   
                         Response.Redirect("/UserAccount/HomeAccount.aspx");
                     }
                 }

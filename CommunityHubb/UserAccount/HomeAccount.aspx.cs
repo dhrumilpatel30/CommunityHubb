@@ -11,7 +11,7 @@ namespace CommunityHubb.UserAccount
         {
             if (null == Session["userId"])
             {
-                Session["fmsg"] = "Please login to continue";
+                Session["fmsg"] = "Please login to view profile";
                 Response.Redirect("~/");
             }
             int userId = Convert.ToInt32(Session["userId"]);
@@ -19,14 +19,11 @@ namespace CommunityHubb.UserAccount
             User user = communityHubbDBEntities.Users.Where(u => u.Id == userId).FirstOrDefault();
             if (user == null)
             {
-                Session["fmsg"] = "User not found";
+                Session["fmsg"] = "User not found, please try again";
                 Response.Redirect("/");
             }
             namebox.Text = user.Name;
             userAbout.Text = user.About;
-            List<Community> communities = user.CommunityUsers.Select(cu => cu.Community).ToList();
-            commlistforuser.DataSource = communities;
-            commlistforuser.DataBind();
             List<Post> posts = user.Posts.OrderByDescending(p => p.Date).ToList();
             postsOfUser.DataSource = posts;
             postsOfUser.DataBind();

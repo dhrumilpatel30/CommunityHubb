@@ -8,11 +8,12 @@
             <div class="row">
                 <div class="col-8">
                     <div class="card m-2">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <div class="border-bottom border-dark row m-1">
-                                <asp:Label class="fw-bolder fs-1 mb-2 col-8" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
-                                <div class="col-4">
-                                    <asp:Button CssClass="btn btn-dark d-block fw-bold fs-5" runat="server" ID="followbtn" OnClick="ToggleFollow" />
+                                <asp:Label class="fw-bolder fs-1 mb-2 col-6" runat="server" Text="Community Name" ID="titlebox"></asp:Label>
+                                <div class="col-6 d-flex justify-content-end h-50">
+                                    <asp:Button CssClass="btn btn-dark fs-6" runat="server" ID="followbtn" OnClick="ToggleFollow" />
+                                    <a id="createButton" runat="server" class="btn btn-dark m-1 fs-6">+ Create Post</a>
                                 </div>
 
                             </div>
@@ -20,7 +21,6 @@
                                 <div class="fw-bold">Description:</div>
                                 <asp:Label ID="commdesc" runat="server" Text="This is description" CssClass="m-2 fs-5"></asp:Label>
                             </div>
-                            <a id="createButton" runat="server" class="btn btn-dark m-1 d-block fs-5 fw-bold">Create Post in community</a>
                         </div>
                     </div>
                     <div class="card m-2 border-0">
@@ -38,8 +38,7 @@
                                                     class="btn btn-light border border-1 p-3 rounded-4 w-100">
                                                     <div class="d-flex justify-content-between">
                                                         <div style='font-weight: 600'>
-                                                            In: <a href='../ManageCommunity/CommunityHome.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("CommunityName") %></span> </a>, 
-                                By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                            By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
                                                         </div>
                                                         <div style='font-weight: 500'>On: <%# Eval("Date") %> </div>
                                                     </div>
@@ -55,24 +54,19 @@
                 </div>
                 <div class="col-4">
                     <div class="card m-2">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <div class="border-bottom border-dark mt-3">
                                 <asp:Label class="fw-bolder fs-3 mb-3" runat="server" Text="Members" ID="Label1"></asp:Label>
                             </div>
                             <table class="table-borderless w-100">
                                 <asp:Repeater runat="server" ID="userlist">
                                     <ItemTemplate>
-                                        <tbody class="table">
-                                            <tr>
-                                                <td>
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
-    Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
-                                                        class="btn btn-light container rounded-4 m-2">
-                                                        <h4 class="fw-bold d-flex"><%# Eval("Name") %></h4>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <tr>
+                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                                class="btn btn-link text-decoration-none m-2 d-block text-start">
+                                                <div class="fw-bold fs-5"><%# Eval("Name") %></div>
+                                            </div>
+                                        </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </table>

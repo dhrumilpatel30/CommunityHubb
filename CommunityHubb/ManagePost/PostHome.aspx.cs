@@ -26,7 +26,7 @@ namespace CommunityHubb.ManagePost
             Post postData = entities.Posts.Where(x => x.Id == postId).FirstOrDefault();
             if (null == postData)
             {
-                Session["fmsg"] = "Post not found";
+                Session["fmsg"] = "Post not found, please try again";
                 Response.Redirect("~/");
             }
 
@@ -36,14 +36,14 @@ namespace CommunityHubb.ManagePost
             {
                 if (null == Session["UserId"])
                 {
-                    Session["fmsg"] = "that is a private post, please login to continue";
+                    Session["fmsg"] = "Please login to view this private post";
                     Response.Redirect("~/");
                 }
                 int userId = Convert.ToInt32(Session["UserId"]);
                 CommunityUser communityUser = entities.CommunityUsers.Where(x => x.CommunityId == community.Id && x.UserId == userId).FirstOrDefault();
                 if (null == communityUser)
                 {
-                    Session["fmsg"] = "You are not a member of private community to view this post";
+                    Session["fmsg"] = "You are not a member of this private community to view post";
                     Response.Redirect("~/");
                 }
             }
@@ -147,7 +147,7 @@ namespace CommunityHubb.ManagePost
             int replyId = Convert.ToInt32(commandArgument);
             if (null == Session["UserId"])
             {
-                Session["fmsg"] = "Please login to like";
+                Session["fmsg"] = "Please login to like this reply";
                 Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
 
@@ -199,7 +199,7 @@ namespace CommunityHubb.ManagePost
             int replyId = Convert.ToInt32(commandArgument);
             if (null == Session["UserId"])
             {
-                Session["fmsg"] = "Please login to dislike";
+                Session["fmsg"] = "Please login to dislike this reply";
                 Response.Redirect("~/ManagePost/PostHome?id=" + postData.Id);
             }
 

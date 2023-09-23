@@ -33,15 +33,6 @@ namespace CommunityHubb.ManageCommunity
         protected global::System.Web.UI.WebControls.Button followbtn;
 
         /// <summary>
-        /// commdesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label commdesc;
-
-        /// <summary>
         /// createButton control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace CommunityHubb.ManageCommunity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor createButton;
+
+        /// <summary>
+        /// commdesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label commdesc;
 
         /// <summary>
         /// Label2 control.

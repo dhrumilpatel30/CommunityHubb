@@ -11,7 +11,7 @@ namespace CommunityHubb.UserAccount
         {
             if (Session["UserId"] == null)
             {
-                Session["fmsg"] = "Please login to continue";
+                Session["fmsg"] = "Please login to update profile";
                 Response.Redirect("/");
             }
             else
@@ -46,7 +46,7 @@ namespace CommunityHubb.UserAccount
             communityHubbDBEntities.SaveChanges();
 
             Session["smsg"] = "Details updated successfully";
-            Response.Redirect("/");
+            Response.Redirect("/UserAccount/HomeAccount");
         }
     }
 }

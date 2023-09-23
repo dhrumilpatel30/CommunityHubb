@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="fw-bolder fs-3 mB-1">Details</div>
+                        <div class="card-body bg-light">
+                            <div class="fw-bolder fs-3 mb-1">Details</div>
                             <div>Other things like Name, Email and password are not possible to update. :(</div>
                             <div class="mt-2 mb-4">
 

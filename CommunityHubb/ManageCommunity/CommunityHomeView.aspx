@@ -6,7 +6,7 @@
             <div class="fw-bolder display-6 mb-3">Communities</div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-5 col-sm-12 border border-2 rounded-2 p-4 h-100" style="height: fit-content; top: 75px; position: sticky;">
+            <div class="col-lg-3 col-md-5 col-sm-12 border border-1 rounded-2 p-4 h-100 bg-light" style="height: fit-content; top: 75px; position: sticky;">
                 <h2 class="fw-bold fs-4">Filter Communities</h2>
                 <div class="text-danger mb-3 ms-1">
                     <asp:Literal ID="loginError" runat="server" />

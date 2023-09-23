@@ -11,7 +11,7 @@ namespace CommunityHubb.ManageCommunity
         {
             if (Request.QueryString["id"] == null)
             {
-                Session["fmsg"] = "Invalid Community Id";
+                Session["fmsg"] = "Invalid community id, please try again";
                 Response.Redirect("/");
             }
             int communityId = Convert.ToInt32(Request.QueryString["id"]);
@@ -19,7 +19,7 @@ namespace CommunityHubb.ManageCommunity
             Community community = communityHubbDBEntities.Communities.Where(c => c.Id == communityId).FirstOrDefault();
             if (community == null)
             {
-                Session["fmsg"] = "Community not found";
+                Session["fmsg"] = "Community not found, please try again";
                 Response.Redirect("/");
             }
             if (community.isPrivate)
@@ -28,7 +28,7 @@ namespace CommunityHubb.ManageCommunity
                 int userId = Convert.ToInt32(Session["UserId"]);
                 if (!users.Any(u => u.Id == userId))
                 {
-                    Session["fmsg"] = "You are not a member of this private community";
+                    Session["fmsg"] = "You are not a member of this private community, ask admin to add you";
                     Response.Redirect("/");
                 }
             }

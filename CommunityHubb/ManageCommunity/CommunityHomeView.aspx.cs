@@ -11,8 +11,6 @@ namespace CommunityHubb.ManageCommunity
         {
 
             CommunityHubb.CommunityHubbDBEntities db = new CommunityHubb.CommunityHubbDBEntities();
-
-            //public community
             List<Community> communities = db.Communities.Where((cu) => !cu.isPrivate).ToList();
             if (null != Session["UserId"])
             {

@@ -6,9 +6,9 @@
         <div class="container p-3">
 
             <div class="row">
-                <div class="col-8">
+                <div class="col-12">
                     <div class="card m-2" style="height: 250px">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <div class="row border-bottom border-dark m-1">
                                 <div class="col-9">
                                     <asp:Label class="fw-bolder fs-1 mb-2" runat="server" Text="User Name" ID="namebox"></asp:Label>
@@ -24,7 +24,7 @@
 
                         </div>
                     </div>
-                    <div class="card m-2">
+                    <div class="card m-2 border-0">
                         <div class="card-body">
                             <div class="border-bottom border-dark mb-2">
                                 <asp:Label class="fw-bolder fs-3" runat="server" Text="Your Creations" ID="Label2"></asp:Label>
@@ -116,33 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card m-2">
-                        <div class="card-body">
-                            <div class="border-bottom border-dark mt-3">
-                                <asp:Label class="fw-bolder fs-3 mb-3" runat="server" Text="Member of" ID="Label1"></asp:Label>
-                            </div>
-                            <table class="table-borderless w-100">
-                                <asp:Repeater runat="server" ID="commlistforuser">
-                                    <ItemTemplate>
-                                        <tbody class="table">
-                                            <tr>
-                                                <td>
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + 
-    Request.ApplicationPath.TrimEnd('/') + "/" %>ManageCommunity/CommunityHome.aspx?id=<%#Eval("Id") %>`'
-                                                        class="btn btn-light container rounded-4 m-2">
-                                                        <h4 class="fw-bold d-flex"><%# Eval("Name") %></h4>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </main>

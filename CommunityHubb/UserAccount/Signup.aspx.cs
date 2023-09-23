@@ -34,7 +34,9 @@ namespace CommunityHubb.UserAccount
             CommunityHubb.CommunityHubbDBEntities communityHubbDBEntities = new CommunityHubb.CommunityHubbDBEntities();
             communityHubbDBEntities.Users.Add(user);
             communityHubbDBEntities.SaveChanges();
-            Session["smsg"] = "User Created Successfully";
+            Session["smsg"] = "you are successfully signed up for CommunityHubb, you are also logged in";
+            Session["UserId"] = user.Id;
+            Session["UserName"] = user.Name;
             Response.Redirect("/");
         }
     }

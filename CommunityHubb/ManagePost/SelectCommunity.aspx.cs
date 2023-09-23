@@ -8,7 +8,7 @@ namespace CommunityHubb.ManagePost
         {
             if (Session["UserId"] == null)
             {
-                Session["fmsg"] = "You are Not Logged In";
+                Session["fmsg"] = "Please login to create a post";
                 Response.Redirect("/");
             }
         }

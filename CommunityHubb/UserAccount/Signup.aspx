@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <div class="fw-bolder fs-3 mb-3">Create an account</div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold fs-6">Email</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <div class="fw-bolder fs-3 mb-3">More info (optional)</div>
 
 

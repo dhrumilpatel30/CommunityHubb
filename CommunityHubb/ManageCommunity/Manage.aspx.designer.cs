@@ -21,7 +21,7 @@ namespace CommunityHubb.ManageCommunity
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label titlebox;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor titlebox;
 
         /// <summary>
         /// commdesc control.

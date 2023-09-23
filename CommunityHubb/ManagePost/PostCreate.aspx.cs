@@ -9,7 +9,7 @@ namespace CommunityHubb.ManagePost
         {
             if (Session["UserId"] == null)
             {
-                Session["fmsg"] = "Please log in to create post";
+                Session["fmsg"] = "Please login to create a post";
                 Response.Redirect("/");
             }
             String communityId = Request.QueryString["id"];
@@ -25,13 +25,13 @@ namespace CommunityHubb.ManagePost
             Community community = communityHubbDB.Communities.Where(c => c.Id == communityIdInt).FirstOrDefault();
             if (community == null)
             {
-                Session["fmsg"] = "Community Not Found";
+                Session["fmsg"] = "Community not found, please try again";
                 Response.Redirect("/");
             }
             int count = communityHubbDB.CommunityUsers.Where(c => c.CommunityId == communityIdInt && c.UserId == userId).Count();
             if (count == 0)
             {
-                Session["fmsg"] = "You are Not a Member of this Community";
+                Session["fmsg"] = "You are not a member of this community, please follow community to post";
                 Response.Redirect("/");
 
             }
@@ -55,7 +55,7 @@ namespace CommunityHubb.ManagePost
 
             communityHubbDB.Posts.Add(post);
             communityHubbDB.SaveChanges();
-            Session["smsg"] = "Post Created Successfully";
+            Session["smsg"] = "Post created successfully";
 
             Response.Redirect("~/ManagePost/PostHome?id=" + post.Id.ToString());
 

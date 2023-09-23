@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <div class="fw-bolder fs-3 mb-3">Enter details</div>
 
                         <div class="mb-3">
@@ -41,7 +41,7 @@
             </div>
             <div class="col-4">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body bg-light">
                         <div class="mb-4">
 
                             <label class="form-label fw-bold fs-5">About Communtiy</label>
@@ -50,7 +50,7 @@
                         </div>
                         <asp:Button runat="server" CssClass="btn btn-dark fs-4 w-100 fw-bold mt-5" Text="Create Community" ID="createbutton" OnClick="CreateClick" />
                         <br />
-                        <button class="btn btn-outline-dark fw-semibold fs-5 w-100 mt-3" type="button" onclick="location.href='Login.aspx'">Cancel</button>
+                        <a class="btn btn-outline-dark fw-semibold fs-5 w-100 mt-3" href="/">Cancel</a>
 
                     </div>
                 </div>
