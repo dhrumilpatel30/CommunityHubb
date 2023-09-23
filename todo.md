@@ -42,6 +42,3 @@ home page
 view post count in community card, userhome page etc
 
 profile has more details
-
-## design changes needed:
-side list in profile page and community page
