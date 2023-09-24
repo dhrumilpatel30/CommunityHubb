@@ -45,8 +45,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspNet.ScriptManager.jQuery, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.7.0\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=3.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.5.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined, Version=1.12.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.12.1\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -113,16 +116,6 @@
     <Content Include="App_Data\CommunityHubbDB_log.ldf">
       <DependentUpon>CommunityHubbDB.mdf</DependentUpon>
     </Content>
-    <Content Include="CommunityHubModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CommunityHubModel.Context.cs</LastGenOutput>
-      <DependentUpon>CommunityHubModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CommunityHubModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CommunityHubModel.edmx</DependentUpon>
-      <LastGenOutput>CommunityHubModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -139,22 +132,66 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="ManageCommunity\CommunityHome.aspx" />
-    <Content Include="ManageCommunity\CommunityHomeView.aspx" />
-    <Content Include="ManageCommunity\CreateCommunity.aspx" />
+    <Content Include="ManageCommunity\Home.aspx" />
+    <Content Include="ManageCommunity\Index.aspx" />
+    <Content Include="ManageCommunity\Create.aspx" />
     <Content Include="ManageCommunity\Manage.aspx" />
-    <Content Include="ManagePost\PostCreate.aspx" />
-    <Content Include="ManagePost\PostHome.aspx" />
-    <Content Include="ManagePost\PostHomeView.aspx" />
+    <Content Include="ManagePost\Create.aspx" />
+    <Content Include="ManagePost\Home.aspx" />
+    <Content Include="ManagePost\Index.aspx" />
     <Content Include="ManagePost\SelectCommunity.aspx" />
-    <EntityDeploy Include="CommunityHubModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CommunityHubModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="CommunityHubModel.edmx.diagram">
-      <DependentUpon>CommunityHubModel.edmx</DependentUpon>
+    <Content Include="Models\CommunityHubbData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CommunityHubbData.edmx</DependentUpon>
+      <LastGenOutput>CommunityHubbData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CommunityHubbData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CommunityHubbData.edmx</DependentUpon>
+      <LastGenOutput>CommunityHubbData.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -184,11 +221,20 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.7.0.js" />
-    <Content Include="Scripts\jquery-3.7.0.min.js" />
-    <Content Include="Scripts\jquery-3.7.0.slim.js" />
-    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <EntityDeploy Include="Models\CommunityHubbData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CommunityHubbData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CommunityHubbData.edmx.diagram">
+      <DependentUpon>CommunityHubbData.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\tinymce\icons\default\icons.js" />
     <Content Include="Scripts\tinymce\icons\default\icons.min.js" />
@@ -368,12 +414,11 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="UserAccount\Home.aspx" />
-    <Content Include="UserAccount\HomeAccount.aspx" />
-    <Content Include="UserAccount\Login.aspx" />
-    <Content Include="UserAccount\Signup.aspx" />
-    <Content Include="UserAccount\UserHome.aspx" />
-    <Content Include="UserAccount\UserUpdate.aspx" />
+    <Content Include="Account\Profile.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Signup.aspx" />
+    <Content Include="Account\Home.aspx" />
+    <Content Include="Account\Update.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -381,50 +426,29 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Community.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommunityHubModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommunityHubModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommunityHubModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommunityHubModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommunityHubModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="CommunityUser.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ManageCommunity\CommunityHome.aspx.cs">
-      <DependentUpon>CommunityHome.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManageCommunity\CommunityHome.aspx.designer.cs">
-      <DependentUpon>CommunityHome.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManageCommunity\CommunityHomeView.aspx.cs">
-      <DependentUpon>CommunityHomeView.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManageCommunity\CommunityHomeView.aspx.designer.cs">
-      <DependentUpon>CommunityHomeView.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManageCommunity\CreateCommunity.aspx.cs">
-      <DependentUpon>CreateCommunity.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManageCommunity\CreateCommunity.aspx.designer.cs">
-      <DependentUpon>CreateCommunity.aspx</DependentUpon>
+    <Compile Include="ManageCommunity\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageCommunity\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
@@ -433,25 +457,25 @@
     <Compile Include="ManageCommunity\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManagePost\PostCreate.aspx.cs">
-      <DependentUpon>PostCreate.aspx</DependentUpon>
+    <Compile Include="ManagePost\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManagePost\PostCreate.aspx.designer.cs">
-      <DependentUpon>PostCreate.aspx</DependentUpon>
+    <Compile Include="ManagePost\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManagePost\PostHome.aspx.cs">
-      <DependentUpon>PostHome.aspx</DependentUpon>
+    <Compile Include="ManagePost\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManagePost\PostHome.aspx.designer.cs">
-      <DependentUpon>PostHome.aspx</DependentUpon>
+    <Compile Include="ManagePost\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManagePost\PostHomeView.aspx.cs">
-      <DependentUpon>PostHomeView.aspx</DependentUpon>
+    <Compile Include="ManagePost\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManagePost\PostHomeView.aspx.designer.cs">
-      <DependentUpon>PostHomeView.aspx</DependentUpon>
+    <Compile Include="ManagePost\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagePost\SelectCommunity.aspx.cs">
       <DependentUpon>SelectCommunity.aspx</DependentUpon>
@@ -460,16 +484,43 @@
     <Compile Include="ManagePost\SelectCommunity.aspx.designer.cs">
       <DependentUpon>SelectCommunity.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Post.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
+    <Compile Include="Models\Community.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommunityHubbData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunityHubbData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommunityHubbData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommunityHubbData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunityHubbData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommunityUser.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReactionPost.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReactionReply.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reply.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>CommunityHubbData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reaction.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Reply.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -477,50 +528,40 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>CommunityHubModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserAccount\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="Account\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="Account\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserAccount\HomeAccount.aspx.cs">
-      <DependentUpon>HomeAccount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserAccount\HomeAccount.aspx.designer.cs">
-      <DependentUpon>HomeAccount.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserAccount\Login.aspx.cs">
+    <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\Login.aspx.designer.cs">
+    <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserAccount\Signup.aspx.cs">
+    <Compile Include="Account\Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\Signup.aspx.designer.cs">
+    <Compile Include="Account\Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserAccount\UserHome.aspx.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
+    <Compile Include="Account\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\UserHome.aspx.designer.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
+    <Compile Include="Account\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserAccount\UserUpdate.aspx.cs">
-      <DependentUpon>UserUpdate.aspx</DependentUpon>
+    <Compile Include="Account\Update.aspx.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\UserUpdate.aspx.designer.cs">
-      <DependentUpon>UserUpdate.aspx</DependentUpon>
+    <Compile Include="Account\Update.aspx.designer.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -537,8 +578,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\tinymce\langs\README.md" />
-    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.7.0.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

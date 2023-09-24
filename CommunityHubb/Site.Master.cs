@@ -11,12 +11,12 @@ namespace CommunityHubb
             if (Session["smsg"] != null)
             {
                 successlabel.Visible = true;
-                successlabel.Text = Session["smsg"].ToString();
+                successlabel.InnerText = Session["smsg"].ToString();
                 Session["smsg"] = null;
             }
             if (Session["fmsg"] != null)
             {
-                FailLabel.Text = Session["fmsg"].ToString();
+                FailLabel.InnerText = Session["fmsg"].ToString();
                 FailLabel.Visible = true;
                 Session["fmsg"] = null;
             }

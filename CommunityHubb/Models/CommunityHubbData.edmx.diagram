@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07414a5794484daaa88188aac45eb340" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="CommunityHubbDBModel.Community" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.CommunityUser" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.Post" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.ReactionPost" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.ReactionReply" Width="1.5" PointX="15.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.Reply" Width="1.5" PointX="13.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityHubbDBModel.User" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Community__Commu__51300E55" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Community__OwerI__503BEA1C" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Post__CommunityI__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Community__UserI__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Post__UserId__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__ReactionP__PostI__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__PostId__3C34F16F" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__ReactionP__UserI__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__ReactionR__Reply__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__ReactionR__UserI__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityHubbDBModel.FK__Reply__UserId__1BC821DD" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

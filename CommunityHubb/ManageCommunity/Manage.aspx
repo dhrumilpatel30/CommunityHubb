@@ -23,8 +23,8 @@
                     <div class="fw-bolder fs-2 mb-2">Manage Community </div>
                 </div>
                 <div class="d-flex m-2 justify-content-around">
-                    <asp:Button runat="server" OnClick="navPost_Click" ID="navPost" Text="Posts" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
-                    <asp:Button runat="server" OnClick="navUser_Click" ID="navUser" Text="Members" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
+                    <asp:Button runat="server" OnClick="NavPost_Click" ID="navPost" Text="Posts" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
+                    <asp:Button runat="server" OnClick="NavUser_Click" ID="navUser" Text="Members" CssClass="btn btn-dark fs-5 w-100 m-2"></asp:Button>
                 </div>
                 <div id="postsView" runat="server">
                     <h4 class="fw-bold m-2">Posts</h4>
@@ -36,17 +36,17 @@
                                         <td>
                                             <div class="row mb-1">
                                                 <div class="col-10">
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/PostHome.aspx?id=<%#Eval("Id") %>`'
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>ManagePost/Home.aspx?id=<%#Eval("Id") %>`'
                                                         class="btn btn-light border border-1 p-3 rounded-4 w-100">
                                                         <div class="d-flex" style='font-weight: 600'>
-                                                            By User: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("AutorId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Author") %></span> </a>
+                                                            By User: <a href='../Account/Home.aspx?id=<%#Eval("UserId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("User.Name") %></span> </a>
                                                         </div>
                                                         <h4 class="fw-bold d-flex"><%#Eval("Title") %></h4>
-                                                        <div class="d-flex" style='font-weight: 500'>Posted On: <%#Eval("Date") %></div>
+                                                        <div class="d-flex" style='font-weight: 500'>Posted On: <%#Eval("CreatedAt") %></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
-                                                    <asp:Button runat="server" CssClass="btn btn-danger" Text="Delete Post" ID="deletePost" OnClick="deletePost_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-danger" Text="Delete Post" ID="deletePost" OnClick="DeletePost_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
                                                 </div>
                                             </div>
                                         </td>
@@ -66,7 +66,7 @@
                                         <td>
                                             <div class="row mb-1">
                                                 <div class="col-10">
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>Account/Home.aspx?id=<%#Eval("Id") %>`'
                                                         class="btn btn-light border border-1 p-3 rounded-4 w-100">
 
                                                         <h4 class="fw-bold d-flex"><%#Eval("Name") %></h4>
@@ -74,8 +74,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
-                                                    <asp:Button runat="server" CssClass="btn btn-danger mb-1" Text="Remove User" ID="deleteUser" OnClick="deleteUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
-                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Remove From Admin" ID="removeAdmin" OnClick="removeAdmin_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-danger mb-1" Text="Remove User" ID="deleteUser" OnClick="DeleteUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Remove From Admin" ID="removeAdmin" OnClick="RemoveAdmin_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
                                                 </div>
                                             </div>
                                         </td>
@@ -93,7 +93,7 @@
                                         <td>
                                             <div class="row mb-1">
                                                 <div class="col-10">
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>Account/Home.aspx?id=<%#Eval("Id") %>`'
                                                         class="btn btn-light border border-1 p-3 rounded-4 w-100">
 
                                                         <h4 class="fw-bold d-flex"><%#Eval("Name") %></h4>
@@ -101,8 +101,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
-                                                    <asp:Button runat="server" CssClass="btn btn-danger mb-1" Text="Remove User" ID="deleteUser" OnClick="deleteUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
-                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Make an Admin" ID="addAdmin" OnClick="addAdmin_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-danger mb-1" Text="Remove User" ID="deleteUser" OnClick="DeleteUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Make an Admin" ID="addAdmin" OnClick="AddAdmin_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
                                                 </div>
                                             </div>
                                         </td>
@@ -120,7 +120,7 @@
                                         <td>
                                             <div class="row mb-1">
                                                 <div class="col-10">
-                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                                    <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>Account/Home.aspx?id=<%#Eval("Id") %>`'
                                                         class="btn btn-light border border-1 p-3 rounded-4 w-100">
 
                                                         <h4 class="fw-bold d-flex"><%#Eval("Name") %></h4>
@@ -128,7 +128,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
-                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Add in Community" ID="addUser" OnClick="addUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
+                                                    <asp:Button runat="server" CssClass="btn btn-dark" Text="Add in Community" ID="addUser" OnClick="AddUser_Click" CommandArgument='<%#Eval("Id") %>'></asp:Button>
                                                 </div>
                                             </div>
                                         </td>

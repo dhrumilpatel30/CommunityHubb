@@ -52,18 +52,18 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/PostHomeView.aspx">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/PostHomeView.aspx">Posts</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/CommunityHomeView.aspx">Communities</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/Index.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/Index.aspx">Posts</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/Index.aspx">Communities</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/SelectCommunity">Post Something</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/CreateCommunity.aspx">Create Community</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/Create.aspx">Create Community</a></li>
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         <%if (Session["UserId"] == null)
                             {
                         %>
-                        <li><a runat="server" class="nav-link" href="~/UserAccount/Signup">Register</a></li>
-                        <li><a runat="server" class="nav-link" href="~/UserAccount/Login">Log in</a></li>
+                        <li><a runat="server" class="nav-link" href="~/Account/Signup">Register</a></li>
+                        <li><a runat="server" class="nav-link" href="~/Account/Login">Log in</a></li>
                     </ul>
                     <% }
                         else
@@ -71,15 +71,15 @@
                     <ul class="navbar-nav navbar-right">
                         <li>
                             <asp:Button runat="server" CssClass="btn btn-dark" OnClick="logout" Text="Logout" /></li>
-                        <li><a runat="server" class="nav-link" href="~/UserAccount/HomeAccount.aspx">Your Account</a></li>
+                        <li><a runat="server" class="nav-link" href="~/Account/Profile.aspx">Your Profile</a></li>
                     </ul>
                     <%} %>
                 </div>
             </div>
         </nav>
         <div class="container p-3">
-            <asp:Label ID="successlabel" class="full alert alert-success alert-dismissible fade show m-1" Text="" runat="server" Visible="false" />
-            <asp:Label ID="FailLabel" class="full alert alert-danger alert-dismissible fade show m-1" Text="" runat="server" Visible="false" />
+            <div id="successlabel" class="full alert alert-success alert-dismissible fade show m-1" runat="server" visible="false"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+            <div id="FailLabel" class="full alert alert-danger alert-dismissible fade show m-1" runat="server" visible="false"></div>
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

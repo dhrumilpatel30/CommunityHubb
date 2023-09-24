@@ -30,7 +30,7 @@ namespace CommunityHubb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label successlabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl successlabel;
 
         /// <summary>
         /// FailLabel control.
@@ -39,7 +39,7 @@ namespace CommunityHubb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FailLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FailLabel;
 
         /// <summary>
         /// MainContent control.
