@@ -419,7 +419,6 @@
     <Content Include="Account\Signup.aspx" />
     <Content Include="Account\Home.aspx" />
     <Content Include="Account\Update.aspx" />
-    <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -472,7 +471,6 @@
     </Compile>
     <Compile Include="ManagePost\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ManagePost\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -562,13 +560,6 @@
     </Compile>
     <Compile Include="Account\Update.aspx.designer.cs">
       <DependentUpon>Update.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

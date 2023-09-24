@@ -105,13 +105,13 @@ namespace CommunityHubb.ManageCommunity
             foreach (CommunityUser communityUser in community.CommunityUsers)
             {
                 User user = communityUser.User;
-                if( communityUser.IsAdmin)
-                {
-                    user.Name = user.Name + " (Admin)";
-                }
-                if(communityUser.User == community.User)
+                if (communityUser.User == community.User)
                 {
                     user.Name = user.Name + " (Owner)";
+                }
+                else if (communityUser.IsAdmin)
+                {
+                    user.Name = user.Name + " (Admin)";
                 }
                 members.Add(user);
             }

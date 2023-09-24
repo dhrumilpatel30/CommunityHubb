@@ -37,7 +37,7 @@
                                                     class="btn btn-light border border-1 p-3 rounded-4 w-100">
                                                     <div class="d-flex justify-content-between">
                                                         <div style='font-weight: 600'>
-                                                            By: <a href='../UserAccount/UserHome.aspx?id=<%#Eval("UserId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("User.Name") %></span> </a>
+                                                            By: <a href='../Account/Home.aspx?id=<%#Eval("UserId") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("User.Name") %></span> </a>
                                                         </div>
                                                         <div style='font-weight: 500'>On: <%# Eval("CreatedAt") %> </div>
                                                     </div>
@@ -61,7 +61,7 @@
                                 <asp:Repeater runat="server" ID="userlist">
                                     <ItemTemplate>
                                         <tr>
-                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>UserAccount/UserHome.aspx?id=<%#Eval("Id") %>`'
+                                            <div onclick='window.location=`<%#Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/" %>Account/Home.aspx?id=<%#Eval("Id") %>`'
                                                 class="btn btn-link text-decoration-none m-2 d-block text-start">
                                                 <div class="fw-bold fs-5"><%# Eval("Name") %></div>
                                             </div>

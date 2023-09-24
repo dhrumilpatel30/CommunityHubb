@@ -63,7 +63,7 @@
                                         class="btn btn-light border border-1 p-3 rounded-4 w-100">
                                         <div class="d-flex justify-content-between">
                                             <div style='font-weight: 600'>
-                                                In: <a href='../ManageCommunity/Home.aspx?id=<%#Eval("CommunityId")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Community.Name") %></span> </a>, 
+                                                In: <a href='../ManageCommunity/Home.aspx?id=<%#Eval("Community.Id")%>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("Community.Name") %></span> </a>, 
                                                 By: <a href='../Account/Home.aspx?id=<%#Eval("User.Id") %>' class="text-decoration-none"><span class="fw-bolder"><%# Eval("User.Name") %></span> </a>
                                             </div>
 
@@ -74,8 +74,8 @@
                                                 <h3 class="fw-bold pt-1 d-flex"><%# Eval("Title") %></h3>
                                             </div>
                                             <div class="col-6 text-end fw-bold">
-                                                <div runat="server" visible='<%#Eval("Replies.Count").ToString()=="1"%>'>1 Reply</div>
-                                                <div runat="server" visible='<%#Eval("Replies.Count").ToString()!="1"%>'><%#Eval("Replies.Count")%> Replies</div>
+                                                <div><%#Eval("ReplyCount")%></div>
+                                                <div><%#Eval("LikeCount")%> <%#Eval("DislikeCount")%></div>
                                             </div>
 
                                         </div>
