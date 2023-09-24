@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CommunityHubbDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Community">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="IsPublic" Type="bit" Nullable="false" />
+          <Property Name="OwerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunityUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommunityId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CommunityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReactionPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsLike" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReactionReply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsLike" Type="bit" Nullable="false" />
+          <Property Name="ReplyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="About" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dob" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Community__Commu__51300E55">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__OwerI__503BEA1C">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Community" Type="Self.Community" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Community">
+              <PropertyRef Name="OwerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__UserI__797309D9">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__CommunityI__4F47C5E3">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__UserId__3F115E1A">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionP__PostI__46B27FE2">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="ReactionPost" Type="Self.ReactionPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionPost">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionP__UserI__47A6A41B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReactionPost" Type="Self.ReactionPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionR__Reply__43D61337">
+          <End Role="Reply" Type="Self.Reply" Multiplicity="1" />
+          <End Role="ReactionReply" Type="Self.ReactionReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionReply">
+              <PropertyRef Name="ReplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionR__UserI__42E1EEFE">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReactionReply" Type="Self.ReactionReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionReply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reply__PostId__3C34F16F">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reply__UserId__1BC821DD">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommunityHubbDBModelStoreContainer">
+          <EntitySet Name="Community" EntityType="Self.Community" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityUser" EntityType="Self.CommunityUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReactionPost" EntityType="Self.ReactionPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReactionReply" EntityType="Self.ReactionReply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Community__Commu__51300E55" Association="Self.FK__Community__Commu__51300E55">
+            <End Role="Community" EntitySet="Community" />
+            <End Role="CommunityUser" EntitySet="CommunityUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__OwerI__503BEA1C" Association="Self.FK__Community__OwerI__503BEA1C">
+            <End Role="User" EntitySet="User" />
+            <End Role="Community" EntitySet="Community" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__UserI__797309D9" Association="Self.FK__Community__UserI__797309D9">
+            <End Role="User" EntitySet="User" />
+            <End Role="CommunityUser" EntitySet="CommunityUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__CommunityI__4F47C5E3" Association="Self.FK__Post__CommunityI__4F47C5E3">
+            <End Role="Community" EntitySet="Community" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__UserId__3F115E1A" Association="Self.FK__Post__UserId__3F115E1A">
+            <End Role="User" EntitySet="User" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionP__PostI__46B27FE2" Association="Self.FK__ReactionP__PostI__46B27FE2">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="ReactionPost" EntitySet="ReactionPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionP__UserI__47A6A41B" Association="Self.FK__ReactionP__UserI__47A6A41B">
+            <End Role="User" EntitySet="User" />
+            <End Role="ReactionPost" EntitySet="ReactionPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionR__Reply__43D61337" Association="Self.FK__ReactionR__Reply__43D61337">
+            <End Role="Reply" EntitySet="Reply" />
+            <End Role="ReactionReply" EntitySet="ReactionReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionR__UserI__42E1EEFE" Association="Self.FK__ReactionR__UserI__42E1EEFE">
+            <End Role="User" EntitySet="User" />
+            <End Role="ReactionReply" EntitySet="ReactionReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reply__PostId__3C34F16F" Association="Self.FK__Reply__PostId__3C34F16F">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reply__UserId__1BC821DD" Association="Self.FK__Reply__UserId__1BC821DD">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommunityHubbDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Community">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsPublic" Type="Boolean" Nullable="false" />
+          <Property Name="OwerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CommunityUsers" Relationship="Self.FK__Community__Commu__51300E55" FromRole="Community" ToRole="CommunityUser" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Community__OwerI__503BEA1C" FromRole="Community" ToRole="User" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__CommunityI__4F47C5E3" FromRole="Community" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="CommunityUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommunityId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK__Community__Commu__51300E55" FromRole="CommunityUser" ToRole="Community" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Community__UserI__797309D9" FromRole="CommunityUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CommunityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Community" Relationship="Self.FK__Post__CommunityI__4F47C5E3" FromRole="Post" ToRole="Community" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Post__UserId__3F115E1A" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="ReactionPosts" Relationship="Self.FK__ReactionP__PostI__46B27FE2" FromRole="Post" ToRole="ReactionPost" />
+          <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__PostId__3C34F16F" FromRole="Post" ToRole="Reply" />
+        </EntityType>
+        <EntityType Name="ReactionPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsLike" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK__ReactionP__PostI__46B27FE2" FromRole="ReactionPost" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ReactionP__UserI__47A6A41B" FromRole="ReactionPost" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ReactionReply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsLike" Type="Boolean" Nullable="false" />
+          <Property Name="ReplyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reply" Relationship="Self.FK__ReactionR__Reply__43D61337" FromRole="ReactionReply" ToRole="Reply" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ReactionR__UserI__42E1EEFE" FromRole="ReactionReply" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Post" Relationship="Self.FK__Reply__PostId__3C34F16F" FromRole="Reply" ToRole="Post" />
+          <NavigationProperty Name="ReactionReplies" Relationship="Self.FK__ReactionR__Reply__43D61337" FromRole="Reply" ToRole="ReactionReply" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Reply__UserId__1BC821DD" FromRole="Reply" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dob" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Communities" Relationship="Self.FK__Community__OwerI__503BEA1C" FromRole="User" ToRole="Community" />
+          <NavigationProperty Name="CommunityUsers" Relationship="Self.FK__Community__UserI__797309D9" FromRole="User" ToRole="CommunityUser" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__UserId__3F115E1A" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="ReactionPosts" Relationship="Self.FK__ReactionP__UserI__47A6A41B" FromRole="User" ToRole="ReactionPost" />
+          <NavigationProperty Name="ReactionReplies" Relationship="Self.FK__ReactionR__UserI__42E1EEFE" FromRole="User" ToRole="ReactionReply" />
+          <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__UserId__1BC821DD" FromRole="User" ToRole="Reply" />
+        </EntityType>
+        <Association Name="FK__Community__Commu__51300E55">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__OwerI__503BEA1C">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Community" Type="Self.Community" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Community">
+              <PropertyRef Name="OwerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__CommunityI__4F47C5E3">
+          <End Role="Community" Type="Self.Community" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Community">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__UserI__797309D9">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CommunityUser" Type="Self.CommunityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommunityUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__UserId__3F115E1A">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionP__PostI__46B27FE2">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="ReactionPost" Type="Self.ReactionPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionPost">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reply__PostId__3C34F16F">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionP__UserI__47A6A41B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReactionPost" Type="Self.ReactionPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionR__Reply__43D61337">
+          <End Role="Reply" Type="Self.Reply" Multiplicity="1" />
+          <End Role="ReactionReply" Type="Self.ReactionReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionReply">
+              <PropertyRef Name="ReplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReactionR__UserI__42E1EEFE">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ReactionReply" Type="Self.ReactionReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReactionReply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reply__UserId__1BC821DD">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommunityHubbDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Communities" EntityType="Self.Community" />
+          <EntitySet Name="CommunityUsers" EntityType="Self.CommunityUser" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="ReactionPosts" EntityType="Self.ReactionPost" />
+          <EntitySet Name="ReactionReplies" EntityType="Self.ReactionReply" />
+          <EntitySet Name="Replies" EntityType="Self.Reply" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Community__Commu__51300E55" Association="Self.FK__Community__Commu__51300E55">
+            <End Role="Community" EntitySet="Communities" />
+            <End Role="CommunityUser" EntitySet="CommunityUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__OwerI__503BEA1C" Association="Self.FK__Community__OwerI__503BEA1C">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Community" EntitySet="Communities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__CommunityI__4F47C5E3" Association="Self.FK__Post__CommunityI__4F47C5E3">
+            <End Role="Community" EntitySet="Communities" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__UserI__797309D9" Association="Self.FK__Community__UserI__797309D9">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CommunityUser" EntitySet="CommunityUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__UserId__3F115E1A" Association="Self.FK__Post__UserId__3F115E1A">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionP__PostI__46B27FE2" Association="Self.FK__ReactionP__PostI__46B27FE2">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="ReactionPost" EntitySet="ReactionPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reply__PostId__3C34F16F" Association="Self.FK__Reply__PostId__3C34F16F">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionP__UserI__47A6A41B" Association="Self.FK__ReactionP__UserI__47A6A41B">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ReactionPost" EntitySet="ReactionPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionR__Reply__43D61337" Association="Self.FK__ReactionR__Reply__43D61337">
+            <End Role="Reply" EntitySet="Replies" />
+            <End Role="ReactionReply" EntitySet="ReactionReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReactionR__UserI__42E1EEFE" Association="Self.FK__ReactionR__UserI__42E1EEFE">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ReactionReply" EntitySet="ReactionReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reply__UserId__1BC821DD" Association="Self.FK__Reply__UserId__1BC821DD">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CommunityHubbDBModelStoreContainer" CdmEntityContainer="CommunityHubbDBEntities">
+          <EntitySetMapping Name="Communities">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Community">
+              <MappingFragment StoreEntitySet="Community">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="OwerId" ColumnName="OwerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityUsers">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.CommunityUser">
+              <MappingFragment StoreEntitySet="CommunityUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommunityId" ColumnName="CommunityId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CommunityId" ColumnName="CommunityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReactionPosts">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.ReactionPost">
+              <MappingFragment StoreEntitySet="ReactionPost">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReactionReplies">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.ReactionReply">
+              <MappingFragment StoreEntitySet="ReactionReply">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+                <ScalarProperty Name="ReplyId" ColumnName="ReplyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Replies">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.Reply">
+              <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CommunityHubbDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

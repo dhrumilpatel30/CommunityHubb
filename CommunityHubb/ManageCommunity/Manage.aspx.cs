@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityHubb.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace CommunityHubb.ManageCommunity
                 Response.Redirect("~/");
             }
             int communityId = Convert.ToInt32(Request.QueryString["id"]);
-
-            //int communityId = 11;
-            CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
-            Community community = entities.Communities.Where(c => c.Id == communityId).FirstOrDefault();
+            CommunityHubbDBEntities db = new CommunityHubbDBEntities();
+            Community community = db.Communities.Where(c => c.Id == communityId).FirstOrDefault();
+            if (null == community)
+            {
+                Session["fmsg"] = "Community not found, please try again";
+                Response.Redirect("~/");
+            }
             int userId;
             if (null == Session["UserId"])
             {
@@ -27,26 +31,22 @@ namespace CommunityHubb.ManageCommunity
                 Response.Redirect("~/");
             }
             userId = Convert.ToInt32(Session["UserId"]);
-            if (null == community)
-            {
-                Session["fmsg"] = "Community not found, please try again";
-                Response.Redirect("~/");
-            }
-            if (!entities.CommunityUsers.Where(cu => cu.CommunityId == communityId && cu.UserId == userId).FirstOrDefault().IsAdmin)
+            User user = db.Users.Where(u => u.Id == userId).FirstOrDefault();
+            if (user.Communities.Count(c => c.Id == communityId) == 0 && 
+                user.CommunityUsers.Where(cu => cu.IsAdmin && cu.CommunityId == communityId).Count() == 0)
             {
                 Session["fmsg"] = "You are not admin to manage this community";
                 Response.Redirect("~/");
             }
-            List<Post> posts = community.Posts.OrderByDescending(post => post.Date).ToList();
+            List<Post> posts = community.Posts.OrderByDescending(post => post.CreatedAt).ToList();
             postsOfCommunity.DataSource = posts;
             postsOfCommunity.DataBind();
             titlebox.InnerText = community.Name;
-            titlebox.HRef = "~/ManageCommunity/Communityhome?id=" + community.Id;
+            titlebox.HRef = "~/ManageCommunity/Home?id=" + community.Id;
             commdesc.Text = community.Description;
             List<User> usersNonAdmin = community.CommunityUsers.Where(cu => !cu.IsAdmin).Select(cu => cu.User).ToList();
             List<User> userAdmin = community.CommunityUsers.Where(cu => cu.IsAdmin).Select(cu => cu.User).ToList();
-            User user = entities.Users.Where(u => u.Id == userId).FirstOrDefault();
-            List<User> allUsers = entities.Users.ToList();
+            List<User> allUsers = db.Users.ToList();
             foreach (User u in userAdmin)
             {
                 allUsers.Remove(u);
@@ -55,7 +55,11 @@ namespace CommunityHubb.ManageCommunity
             {
                 allUsers.Remove(u);
             }
-            userAdmin.Remove(user);
+            userAdmin.Remove(community.User);
+            if(user != community.User)
+            {
+                userAdmin.Remove(user);
+            }
             usersOfCommAdmin.DataSource = userAdmin;
             usersOfCommAdmin.DataBind();
             userOfCommNonAdm.DataSource = usersNonAdmin;
@@ -68,26 +72,30 @@ namespace CommunityHubb.ManageCommunity
             postsView.Visible = true;
         }
 
-        protected void deletePost_Click(object sender, EventArgs e)
+        protected void DeletePost_Click(object sender, EventArgs e)
         {
             int postId = Convert.ToInt32(((Button)sender).CommandArgument);
-            CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
-            Post post = entities.Posts.Where(p => p.Id == postId).FirstOrDefault();
-            foreach (Reaction reaction in post.Reactions.ToList())
+            CommunityHubbDBEntities db = new CommunityHubbDBEntities();
+            Post post = db.Posts.Where(p => p.Id == postId).FirstOrDefault();
+            foreach (ReactionPost reaction in post.ReactionPosts.ToList())
             {
-                entities.Reactions.Remove(reaction);
+                db.ReactionPosts.Remove(reaction);
             }
             foreach (Reply reply in post.Replies.ToList())
             {
-                entities.Replies.Remove(reply);
+                foreach (ReactionReply reaction in reply.ReactionReplies.ToList())
+                {
+                    db.ReactionReplies.Remove(reaction);
+                }
+                db.Replies.Remove(reply);
             }
-            entities.Posts.Remove(post);
-            entities.SaveChanges();
+            db.Posts.Remove(post);
+            db.SaveChanges();
             Session["smsg"] = "Post deleted successfully";
             Response.Redirect("~/ManageCommunity/Manage?id=" + post.CommunityId);
         }
 
-        protected void deleteUser_Click(object sender, EventArgs e)
+        protected void DeleteUser_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(((Button)sender).CommandArgument);
             CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
@@ -98,7 +106,7 @@ namespace CommunityHubb.ManageCommunity
             Response.Redirect("~/ManageCommunity/Manage?id=" + communityUser.CommunityId);
 
         }
-        protected void removeAdmin_Click(object sender, EventArgs e)
+        protected void RemoveAdmin_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(((Button)sender).CommandArgument);
             CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
@@ -110,7 +118,7 @@ namespace CommunityHubb.ManageCommunity
             Response.Redirect("~/ManageCommunity/Manage?id=" + communityUser.CommunityId);
         }
 
-        protected void addAdmin_Click(object sender, EventArgs e)
+        protected void AddAdmin_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(((Button)sender).CommandArgument);
             CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
@@ -122,7 +130,7 @@ namespace CommunityHubb.ManageCommunity
             Response.Redirect("~/ManageCommunity/Manage?id=" + communityUser.CommunityId);
         }
 
-        protected void addUser_Click(object sender, EventArgs e)
+        protected void AddUser_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(((Button)sender).CommandArgument);
             CommunityHubbDBEntities entities = new CommunityHubbDBEntities();
@@ -137,7 +145,7 @@ namespace CommunityHubb.ManageCommunity
 
         }
 
-        protected void navPost_Click(object sender, EventArgs e)
+        protected void NavPost_Click(object sender, EventArgs e)
         {
             navPost.CssClass = "btn btn-dark fs-5 w-100 m-2";
             navUser.CssClass = "btn btn-outline-dark fs-5 w-100 m-2";
@@ -145,7 +153,7 @@ namespace CommunityHubb.ManageCommunity
             postsView.Visible = true;
         }
 
-        protected void navUser_Click(object sender, EventArgs e)
+        protected void NavUser_Click(object sender, EventArgs e)
         {
             navPost.CssClass = "btn btn-outline-dark fs-5 w-100 m-2";
             navUser.CssClass = "btn btn-dark fs-5 w-100 m-2";
