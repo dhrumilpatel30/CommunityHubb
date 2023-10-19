@@ -36,7 +36,7 @@ namespace CommunityHubb.ManageCommunity
                 user.CommunityUsers.Where(cu => cu.IsAdmin && cu.CommunityId == communityId).Count() == 0)
             {
                 Session["fmsg"] = "You are not admin to manage this community";
-                Response.Redirect("~/");
+                Response.Redirect("~/   ");
             }
             List<Post> posts = community.Posts.OrderByDescending(post => post.CreatedAt).ToList();
             postsOfCommunity.DataSource = posts;

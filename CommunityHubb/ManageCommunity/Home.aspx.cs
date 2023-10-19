@@ -72,6 +72,11 @@ namespace CommunityHubb.ManageCommunity
                 Community community = db.Communities.Where(c => c.Id == comId).FirstOrDefault();
 
                 int userId = Convert.ToInt32(Session["UserId"]);
+                if(community.OwerId == userId)
+                {
+                    Session["fmsg"] = "You are owner cannot be unfollowed, consider deleting community";
+                    Response.Redirect("~/ManageCommunity/Home?id="+comId.ToString());
+                }
                 CommunityUser communityUser = community.CommunityUsers.Where(cu => cu.UserId == userId).FirstOrDefault();
                 if (communityUser != null)
                 {
