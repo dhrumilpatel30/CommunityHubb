@@ -6,6 +6,12 @@ using System.Web.UI.WebControls;
 
 namespace CommunityHubb.ManagePost
 {
+    public class PostView : Post
+    {
+        public string LikeCount { get; set; }
+        public string DislikeCount { get; set; }
+        public string ReplyCount { get; set; }
+    }
     public partial class Index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -28,8 +34,7 @@ namespace CommunityHubb.ManagePost
                 }
             }
             posts = posts.OrderByDescending(p => p.CreatedAt).ToList();
-            postlistview.DataSource = posts;
-            postlistview.DataBind();
+            BindPostView(posts);
             GenrateFilters();
         }
         private void GenrateFilters()
@@ -46,6 +51,51 @@ namespace CommunityHubb.ManagePost
                 publicRadio.CssClass = "text-black-50";
                 loginError.Text = "*You must be logged in for all posts";
             }
+        }
+        protected void BindPostView(List<Post> posts)
+        {
+            List<PostView> postViews = new List<PostView>();
+            foreach (Post post in posts)
+            {
+                PostView postView = new PostView();
+                postView.Id = post.Id;
+                postView.Title = post.Title;
+                postView.Content = post.Content;
+                postView.CreatedAt = post.CreatedAt;
+                postView.User = post.User;
+                postView.Community = post.Community;
+                int temp = post.ReactionPosts.Where(rp => rp.IsLike).Count();
+                if(2 > temp)
+                {
+                    postView.LikeCount = temp.ToString() + " Like";
+                }
+                else
+                {
+                    postView.LikeCount = temp.ToString() + " Likes";
+                }
+                temp = post.ReactionPosts.Where(rp => !rp.IsLike).Count();
+                if (2 > temp)
+                {
+                    postView.DislikeCount = temp.ToString() + " Dislike";
+                }
+                else
+                {
+                    postView.DislikeCount = temp.ToString() + " Dislikes";
+                }
+                temp = post.Replies.Count;
+                if (2 > temp)
+                {
+                    postView.ReplyCount = temp.ToString() + " Reply";
+                }
+                else
+                {
+                    postView.ReplyCount = temp.ToString() + " Replies";
+                }
+                postViews.Add(postView);
+            }
+            postlistview.DataSource = postViews;
+            postlistview.DataBind();
+
         }
         protected void ApplyFilters(object sender, EventArgs e)
         {
@@ -122,8 +172,7 @@ namespace CommunityHubb.ManagePost
             {
                 filteredPosts = filteredPosts.OrderByDescending(p => p.ReactionPosts.Count + p.Replies.Count).ToList();
             }
-            postlistview.DataSource = filteredPosts;
-            postlistview.DataBind();
+            BindPostView(filteredPosts);
         }
     }
 }

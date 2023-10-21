@@ -52,7 +52,7 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/Index.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/Index.aspx">Posts</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManageCommunity/Index.aspx">Communities</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ManagePost/SelectCommunity">Post Something</a></li>
@@ -78,7 +78,7 @@
             </div>
         </nav>
         <div class="container p-3">
-            <div id="successlabel" class="full alert alert-success alert-dismissible fade show m-1" runat="server" visible="false"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+            <div id="successlabel" class="full alert alert-success alert-dismissible fade show m-1" runat="server" visible="false"></div>
             <div id="FailLabel" class="full alert alert-danger alert-dismissible fade show m-1" runat="server" visible="false"></div>
         </div>
         <div class="container body-content">
